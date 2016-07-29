@@ -1,0 +1,1 @@
+sentinal - a twitter sentiment analysis app
