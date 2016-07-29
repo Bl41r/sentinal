@@ -1,0 +1,15 @@
+.navbar-brand:hover {
+  opacity: 0.7;
+}
+
+.grey-bg-hover:hover {
+	background-color: #eee;
+}
+
+i {
+	color: #6dcff6;
+}
+
+#tagline {
+	font-size: 2rem;
+}

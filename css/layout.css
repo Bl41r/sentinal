@@ -1,0 +1,25 @@
+#logo {
+	height: 4rem;
+	margin-top: -0.7rem;
+}
+
+h1, #tagline {
+	text-align: center;
+}
+
+#search {
+  margin: auto;
+  padding-top: 4rem;
+}
+
+#search {
+	max-width: 85%;
+}
+
+@media only screen and (min-width : 768px) {
+	#search {
+		max-width: 50%;
+	}
+}
+
+
