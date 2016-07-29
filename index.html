@@ -3,15 +3,67 @@
 <head>
   <title>Sentinal</title>
 
+  <!-- Bootstrap CSS CDN-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <!-- Font Awsome CDN-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+  <!-- External CSS -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/module.css">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
 </head>          
 <body>
+	<!-- navbar -->
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/"><img id="logo" src="img/logo.png"></a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="grey-bg-hover"><a href="/"><i class="fa fa-lg fa-home"></i> Home</a></li>
+            <li class="grey-bg-hover"><a href="/what-is-this"><i class="fa fa-lg fa-question"></i> What is this</a></li>
+            <li class="grey-bg-hover"><a href="/about-us"><i class="fa fa-lg fa-info"></i> About us</a></li>
+          </ul>
+            <ul class="nav navbar-nav navbar-right">
+            <li class="grey-bg-hover"><a href="https://github.com/bitedgeco/sentinal" target="_blank"><i class="fa fa-lg fa-github"></i></a></li>
+          </ul>
+        </div>
+      </div>
+  	</nav><!-- End of navbar -->
 
+    <div class="container">
+
+	  	<h1>Sentinal</h1>
+
+	  	<p id="tagline">Twitter sentiment analysis for any word</p>
+
+			    <div id="search" class="input-group">
+			      <input type="text" class="form-control" placeholder="Twitter sentiment for..." </input>
+			      <span class="input-group-btn">
+			        <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+			      </span>
+			    </div>
+
+
+		</div>
   <!-- JQuery CDN -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <!-- Bootstrap JS CDN -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   <!-- Page.js -->
   <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
   <!-- models -->     
-  <script src="js/model/sentiment_dictionary.js"></script>
+  <!-- <script src="js/model/sentiment_dictionary.js"></script> -->
   <!-- views --> 
   <!-- controllers -->    
     
