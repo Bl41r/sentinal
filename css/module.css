@@ -23,6 +23,9 @@ i {
   background-image: linear-gradient(#FFF, #6dcff6);
   border-top: none;
   height: 5rem;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 
