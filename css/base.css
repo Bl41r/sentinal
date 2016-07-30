@@ -1,6 +1,5 @@
 body {
-    font-family: "Open Sans", "Avenir Next", "Helvetica Neue", Helvetica, sans-serif;
-    background: url(../img/pink_rice.png);
+  font-family: "Open Sans", "Avenir Next", "Helvetica Neue", Helvetica, sans-serif;
 }
 
 .navbar-default .navbar-nav>li>a {
