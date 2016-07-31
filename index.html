@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="css/module.css">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>          
+</head>
 <body>
 	<!-- navbar -->
   <nav class="navbar navbar-default">
@@ -56,6 +56,13 @@
 
 	  <!-- RESULT -->
 	  <div id=result>
+      <div id=numbers>
+        <h2>Retrieved <%= data %></h2>
+        <script>
+          var dataR = "<%= data %>";
+          console.log(dataR);
+          </script>
+      </div>
 		  <p id="result-text">Twitter sentiment for <span id="search-term">{{search term}}</span> is <span id="result">{{positive/negative/neutral}}</span></p>
 
 		  <!--Div that will hold the pie chart-->
@@ -97,7 +104,7 @@
 
 			<p>We do this by analyzing the last 1000 tweets which contain the word you entered into the search field.</p>
 
-			<p>Every word in those tweets is checked for negativity or positivity using the <a href="http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010" target="_blank">AFINN111</a> sentiment analysis dictionary and every tweet is given an overall score for its sentiment being positive, negative or neutral.</p> 
+			<p>Every word in those tweets is checked for negativity or positivity using the <a href="http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010" target="_blank">AFINN111</a> sentiment analysis dictionary and every tweet is given an overall score for its sentiment being positive, negative or neutral.</p>
 
 			<h2>A tweet said xyz which is positive but would be marked as negative</h2>
 
@@ -118,17 +125,17 @@
 				<div class="col-md-3">
 					<img class ="about-pic" src="img/james_small_square.jpg">
 					<h3>James Canning</h3>
-					<p>James is a full stack developer and bitedge fanatic. He founded <a href="http://www.bitedge.co/" target="_blank">Bitedge</a> in 2013.</p> 
+					<p>James is a full stack developer and bitedge fanatic. He founded <a href="http://www.bitedge.co/" target="_blank">Bitedge</a> in 2013.</p>
 				</div>
 				<div class="col-md-3">
 					<img class ="about-pic" src="img/generic_profile_pic.png">
 					<h3>David Smith</h3>
-					<p></p> 
+					<p></p>
 				</div>
 				<div class="col-md-3">
 					<img class ="about-pic" src="img/generic_profile_pic.png">
 					<h3>You!</h3>
-					<p>Sentinal is a free and open source collaboration with all our <a href="https://github.com/bitedgeco/sentinal" target="_blank">code available on Github</a>. You can be involved by contributing to and improving this site</p> 
+					<p>Sentinal is a free and open source collaboration with all our <a href="https://github.com/bitedgeco/sentinal" target="_blank">code available on Github</a>. You can be involved by contributing to and improving this site</p>
 				</div>
 			</div>
 		</div>
@@ -141,11 +148,11 @@
   <!-- Bootstrap JS CDN -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   <!-- Page.js -->
-  <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>   
+  <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
   <!-- ajax for google charts -->
   <script src="https://www.gstatic.com/charts/loader.js"></script>
   <!-- views -->
   <script src="js/view/chart.js"></script>
-    
+
 </body>
 </html>
