@@ -88,7 +88,7 @@ function processTweets(tweets) {
 app.set('views', '.');
 app.set('view engine', 'ejs');
 app.get('/test', function(request, response) {
-  bodies = [];
+  bodies = [];  //tweet bodies
   var twitterData = twitterInstance.getHomeTimeline({ count: '99'}, error, function(data){
     data = JSON.parse(data);
     // console.log(data);
