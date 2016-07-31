@@ -90,14 +90,12 @@ app.set('view engine', 'ejs');
 
 app.get('/test', function(request, response) {
   bodies = [];  //tweet bodies
-  var twitterData = twitterInstance.getSearch({ count: '50', q:'#Beer'}, error, function(data){
+  var twitterData = twitterInstance.getSearch({ count: '50', q:'#Beer', lang: 'en'}, error, function(data){
     data = JSON.parse(data);
     data = data.statuses;
     // console.log(data);
     data.forEach(function(d) {
-      if (d.lang === 'en') {
-        bodies.push(d.text);
-      }
+      bodies.push(d.text);
     });
     console.log(bodies);
     var final = processTweets(bodies);
