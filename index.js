@@ -1,6 +1,6 @@
 module.exports = require('./lib/Twitter');
-var bodies = [];
 
+var fs = require('fs');
 var express = require('express'),
   requireProxy = require('express-request-proxy'),
   port = process.env.PORT || 3000,
@@ -40,14 +40,12 @@ var twitterInstance = new Twitter(config);
 //   )(request, response);
 // };
 
-var fs = require('fs');
 var dictionary = JSON.parse(fs.readFileSync('js/model/sentiment_dictionary.json'));
 
 function cleanup(tweet) { //called by analyzeTweet, expects a string
-  console.log('raw tweet: ', tweet);
-
+  // console.log('raw tweet: ', tweet);
   tweet = tweet
-  .replace(/[.,\/#$!%\^\*;:&{}=\-_()`~><@+|]/g, '')
+  .replace(/[.,\/$!%\^\*;:&{}=\-_()`~><+|]/g, '')
   .replace(/'/g, ' ') //replace ' with a space
   .split(' ').filter(function(t) { //return array of words of length >2
     return t.length > 2;
@@ -61,16 +59,16 @@ function analyzeTweet(tweet) {  //assigns +1, 0,or -1 to a tweet
   tweet = cleanup(tweet);
   tweet.forEach(function(w) {
     if (w in dictionary) {
-      console.log(w, dictionary[w]);
+      // console.log(w, dictionary[w]);
       score += dictionary[w];
     }
   });
-  console.log('raw score: ', score);
+  // console.log('raw score: ', score);
   if (!score) {
-    console.log('score assigned --> 0');
+    // console.log('score assigned --> 0');
     return score;
   } else {
-    console.log('score assigned --> ' + (score / Math.abs(score)));
+    // console.log('score assigned --> ' + (score / Math.abs(score)));
     return (score / Math.abs(score));
   }
 }
@@ -88,19 +86,52 @@ function processTweets(tweets) {
 app.set('views', '.');
 app.set('view engine', 'ejs');
 
+var repetitions = 1;
+var ids = [];
+var bodies = [];
+
+function nextSearch(id, keyword, response) {
+  var yo = twitterInstance.getSearch({ count: '100', q:keyword, lang: 'en', max_id: id}, error, function(data){
+    data = JSON.parse(data);
+    data = data.statuses;
+    data.forEach(function(d) {
+      bodies.push(d.text);
+      ids.push(d.id);
+      console.log(d.text, d.id);
+    });
+    ids = ids.sort();
+    var lastID = ids[0] - 100;
+
+    repetitions += 1;
+    if (repetitions < 10) {
+      setTimeout(function(){nextSearch(lastID, keyword, response);},200);
+    } else {
+      var final = processTweets(bodies);
+      response.render('index', {data: final});
+    }
+  });
+}
+
 app.get('/test', function(request, response) {
+  //todo:  scale this to perform 10 calls, 100 count each using id's
   bodies = [];  //tweet bodies
-  var twitterData = twitterInstance.getSearch({ count: '50', q:'#Beer', lang: 'en'}, error, function(data){
+  ids = [];
+  var keyword = 'Beer';
+
+  var twitterData = twitterInstance.getSearch({ count: '100', q:keyword, lang: 'en', result_type: 'recent'}, error, function(data){
     data = JSON.parse(data);
     data = data.statuses;
     // console.log(data);
     data.forEach(function(d) {
       bodies.push(d.text);
+      ids.push(d.id);
+      console.log(d.text, d.id);
     });
-    console.log(bodies);
-    var final = processTweets(bodies);
-    response.render('index', {data: final});
+    ids = ids.sort();
+    var lastID = ids[0] - 100;
+    nextSearch(lastID, keyword, response);
   });
+
 });
 
 // app.get('/twitter/*', proxyTwitter);
