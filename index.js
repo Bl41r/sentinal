@@ -9,10 +9,12 @@ var express = require('express'),
 module.exports = require('./lib/Twitter');
 
 var repetitions = 1;
+var max_reps = 1; //each rep is 100 tweets
 var ids = [];
 var bodies = [];
 var positives = 0;
 var negatives = 0;
+var searchKey = 'Sammamish';
 
 //Callback functions
 var error = function (err, response, body) {
@@ -105,7 +107,7 @@ function nextSearch(id, keyword, response) {
     ids = ids.sort();
     var lastID = ids[0] - 100;
     repetitions += 1;
-    if (repetitions < 10) {
+    if (repetitions < max_reps) {
       setTimeout(function(){nextSearch(lastID, keyword, response);},200);
     } else {
       var final = processTweets(bodies);
@@ -119,9 +121,9 @@ app.get('/test', function(request, response) {
   negatives = 0;
   bodies = [];  //tweet bodies
   ids = [];
-  var keyword = 'Politics';
+  var keyword = searchKey;
 
-  var twitterData = twitterInstance.getSearch({ count: '100', q:keyword, lang: 'en', result_type: 'recent'}, error, function(data){
+  var twitterData = twitterInstance.getSearch({ count: '10', q:keyword, lang: 'en', result_type: 'recent'}, error, function(data){
     data = JSON.parse(data);
     data = data.statuses;
     // console.log(data);
