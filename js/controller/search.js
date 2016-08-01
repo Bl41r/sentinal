@@ -2,18 +2,14 @@
 // event listener will call the function for ajax get
 // form the url string which gets passed to the ajax get call
 var submitBtn = $('.btn-default');
-var formInput = $('.form-control');
+var formInput = $('.search-form');
 var url;
-console.log('loading search.js');
 
-// submitBtn.click(function(event){
 formInput.submit(function(event){
-  console.log('in form event listener');
   event.preventDefault();
-  var searchTerm = formInput.text;
+  var searchTerm = event.target.term.value;
+  console.log('search term:' + searchTerm);
   url = '/search/' + searchTerm;
-  $.get(url)
-      .done(function(data) {
-        console.log('CALLBACK from client side ajax get call');
-      });
+  // window.location.href = url;
+  $.get(url);
 });

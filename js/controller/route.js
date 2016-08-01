@@ -4,11 +4,10 @@ window.onload = function() {
 	homeController();
 };
 
-page();
 page('/', home);
 page('/faq', faq);
 page('/about' , about);
-
+page();
 
 function home() {
 	homeController();

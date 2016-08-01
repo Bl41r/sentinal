@@ -10,7 +10,6 @@
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/module.css">
-
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
@@ -30,7 +29,7 @@
           <ul class="nav navbar-nav">
             <li class="grey-bg-hover"><a href="/"><i class="fa fa-lg fa-home"></i> Home</a></li>
             <li class="grey-bg-hover"><a href="/faq"><i class="fa fa-lg fa-question-circle"></i> F.A.Q</a></li>
-            <li class="grey-bg-hover"><a href="/about-us"><i class="fa fa-lg fa-info-circle"></i> About us</a></li>
+            <li class="grey-bg-hover"><a href="/about"><i class="fa fa-lg fa-info-circle"></i> About us</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="grey-bg-hover"><a href="https://github.com/bitedgeco/sentinal" target="_blank"><i class="fa fa-lg fa-github"></i></a></li>
@@ -41,62 +40,63 @@
   </nav><!-- End of navbar -->
 
   <div class="container" id="content">
+  	<div class="section" id="home-section">
+			<h1>Sentinal ejs</h1>
+			<p id="tagline">Twitter sentiment analysis for any word</p>
 
-		<h1>Sentinal</h1>
-		<p id="tagline">Twitter sentiment analysis for any word</p>
+			<form class="search-form">
+			  <div id="search" class="input-group">
+			    <input type="text" name="term"  class="form-control" placeholder="Twitter sentiment for...">
+			    <span class="input-group-btn">
+			      <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+			    </span>
+			  </div>
+		  </form>
 
-		<form>
-		  <div id="search" class="input-group">
-		    <input type="text" class="form-control" placeholder="Twitter sentiment for...">
-		    <span class="input-group-btn">
-		      <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-		    </span>
-		  </div>
-	  </form>
+		  <!-- RESULT -->
+		  <div id=result>
+	      <div id=numbers>
+	        <h2>Retrieved <%= data %></h2>
+	        <script>
+	          var dataR = "<%= data %>".split(',');
+	          console.log(dataR);
+	        </script>
+	      </div>
+			  <p id="result-text">Twitter sentiment for <span id="search-term"></span> is <span id="result">{{positive/negative/neutral}}</span></p>
 
-	  <!-- RESULT -->
-	  <div id=result>
-      <div id=numbers>
-        <h2>Retrieved <%= data %></h2>
-        <script>
-          var dataR = "<%= data %>".split(',');
-          console.log(dataR);
-        </script>
-      </div>
-		  <p id="result-text">Twitter sentiment for <span id="search-term">{{search term}}</span> is <span id="result">{{positive/negative/neutral}}</span></p>
+			  <!--Div that will hold the pie chart-->
+			  <div id="chart_div"></div>
 
-		  <!--Div that will hold the pie chart-->
-		  <div id="chart_div"></div>
+			  <!--Social share icons-->
+				<ul class="social-network social-circle">
+			    <li><a href="" target="_blank" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+			    <li><a href="" target="_blank" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+			    <li><a href="" id="clipboard-modal" class="icoLink" title="link" data-toggle="modal" data-target="#linkModal" ><i class="fa fa-link"></i></a></li>
+			  </ul>
 
-		  <!--Social share icons-->
-			<ul class="social-network social-circle">
-		    <li><a href="" target="_blank" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-		    <li><a href="" target="_blank" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-		    <li><a href="" id="clipboard-modal" class="icoLink" title="link" data-toggle="modal" data-target="#linkModal" ><i class="fa fa-link"></i></a></li>
-		  </ul>
+			  <!-- modal for link share -->
+			  <div class="modal fade" id="linkModal" tabindex="-1" role="dialog" aria-labelledby="linkModalLabel">
+			    <div class="modal-dialog modal-lg" role="document">
+			      <div class="modal-content">
+			        <div class="modal-header">
+			          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			          <h4 class="modal-title" id="myModalLabel">Please copy the following URL</h4>
+			        </div>
+			        <div class="modal-body">
+			          <input id="modal-link" class="form-control" value="http://">
+			        </div>
+			        <div class="modal-footer">
+			          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        </div>
+			      </div>
+			    </div>
+			  </div>
 
-		  <!-- modal for link share -->
-		  <div class="modal fade" id="linkModal" tabindex="-1" role="dialog" aria-labelledby="linkModalLabel">
-		    <div class="modal-dialog modal-lg" role="document">
-		      <div class="modal-content">
-		        <div class="modal-header">
-		          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		          <h4 class="modal-title" id="myModalLabel">Please copy the following URL</h4>
-		        </div>
-		        <div class="modal-body">
-		          <input id="modal-link" class="form-control" value="http://">
-		        </div>
-		        <div class="modal-footer">
-		          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		        </div>
-		      </div>
-		    </div>
-		  </div>
+			</div><!-- End of result -->
+		</div>
 
-		</div><!-- End of result -->
-		<hr>
 		<!-- FAQ -->
-		<div id="faq">
+  	<div class="section" id="faq-section">
 			<h1>Frequently asked questions</h1>
 			<h2>What is this?</h2>
 
@@ -112,9 +112,8 @@
 
 			<p>One edge case we do deal with is that a word which is normally marked as positive or negative, will be marked as neutral if the word is proceeded by "not" as in "not good" or "not bad".</p>
 		</div>
-		<hr>
 		<!-- ABOUT US -->
-		<div id="about-us">
+  	<div class="section" id="about-section">
 			<h1>About us</h1>
 			<div class="row">
 				<div class="col-md-3">
@@ -141,7 +140,7 @@
 		</div>
 	</div>
 
-	  <footer class="panel-footer"></footer>
+	<footer class="panel-footer"></footer>
 
   <!-- JQuery CDN -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
@@ -152,10 +151,14 @@
   <!-- ajax for google charts -->
   <script src="https://www.gstatic.com/charts/loader.js"></script>
   <!-- controllers -->
-  <script src="js/controller/search.js"></scripts>
+  <script src="js/controller/search.js"></script>
+  <!-- controllers -->
+  <script src="js/controller/homeController.js"></script>
+  <script src="js/controller/aboutController.js"></script>
+  <script src="js/controller/faqController.js"></script>
+  <script src="js/controller/route.js"></script>
   <!-- views -->
   <script src="js/view/chart.js"></script>
-
 
 </body>
 </html>
