@@ -16,18 +16,18 @@ function drawChart() {
   data.addColumn('string', 'Topping');
   data.addColumn('number', 'Slices');
   data.addRows([
-    ['Positive', 3],
-    ['Negative', 1],
-    ['Neutral', 1]
+    ['Positive', parseInt(dataR[1])],
+    ['Negative', parseInt(dataR[2])],
+    ['Neutral', parseInt(dataR[3])]
   ]);
 
   // Set chart options
   var options = {
-                 'width':700,
-                 'height':500,
-								 'colors':['#aaf66d', '#d84949', '#6dcff6'],
-								 'is3D': true
-               };
+    'width':700,
+    'height':500,
+    'colors':['#aaf66d', '#d84949', '#6dcff6'],
+    'is3D': true
+  };
 
   // Instantiate and draw our chart, passing in some options.
   var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
