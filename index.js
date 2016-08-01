@@ -104,10 +104,9 @@ function nextSearch(id, keyword, response) {
     });
     ids = ids.sort();
     var lastID = ids[0] - 100;
-
     repetitions += 1;
     if (repetitions < 10) {
-      setTimeout(function(){nextSearch(lastID, keyword, response);},100);
+      setTimeout(function(){nextSearch(lastID, keyword, response);},200);
     } else {
       var final = processTweets(bodies);
       response.render('index', {data: final});
@@ -120,7 +119,7 @@ app.get('/test', function(request, response) {
   negatives = 0;
   bodies = [];  //tweet bodies
   ids = [];
-  var keyword = 'Trump';
+  var keyword = 'Politics';
 
   var twitterData = twitterInstance.getSearch({ count: '100', q:keyword, lang: 'en', result_type: 'recent'}, error, function(data){
     data = JSON.parse(data);
@@ -133,7 +132,7 @@ app.get('/test', function(request, response) {
     });
     ids = ids.sort();
     var lastID = ids[0] - 100;
-    setTimeout(function() {nextSearch(lastID, keyword, response);}, 100);
+    setTimeout(function() {nextSearch(lastID, keyword, response);}, 200);
   });
 });
 
