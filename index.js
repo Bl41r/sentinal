@@ -116,12 +116,15 @@ function nextSearch(id, keyword, response) {
   });
 }
 
-app.get('/test', function(request, response) {
+app.get('/search/*', function(request, response) {
+  console.log('request.params' + request.params);
+  console.log('request.params[0]' + request.params[0]);
   positives = 0;
   negatives = 0;
   bodies = [];  //tweet bodies
   ids = [];
-  var keyword = searchKey;
+  // var keyword = searchKey;
+  var keyword = request.params[0];
 
   var twitterData = twitterInstance.getSearch({ count: '10', q:keyword, lang: 'en', result_type: 'recent'}, error, function(data){
     data = JSON.parse(data);
