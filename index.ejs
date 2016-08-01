@@ -59,9 +59,9 @@
       <div id=numbers>
         <h2>Retrieved <%= data %></h2>
         <script>
-          var dataR = "<%= data %>";
+          var dataR = "<%= data %>".split(',');
           console.log(dataR);
-          </script>
+        </script>
       </div>
 		  <p id="result-text">Twitter sentiment for <span id="search-term">{{search term}}</span> is <span id="result">{{positive/negative/neutral}}</span></p>
 

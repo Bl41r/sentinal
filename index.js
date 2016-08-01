@@ -8,6 +8,12 @@ var express = require('express'),
 
 module.exports = require('./lib/Twitter');
 
+var repetitions = 1;
+var ids = [];
+var bodies = [];
+var positives = 0;
+var negatives = 0;
+
 //Callback functions
 var error = function (err, response, body) {
   console.log('ERROR [%s]', err);
@@ -69,6 +75,7 @@ function analyzeTweet(tweet) {  //assigns +1, 0,or -1 to a tweet
     return score;
   } else {
     // console.log('score assigned --> ' + (score / Math.abs(score)));
+    if (score > 0) {positives += 1;} else {negatives += 1;}
     return (score / Math.abs(score));
   }
 }
@@ -80,15 +87,11 @@ function processTweets(tweets) {
     finalScore += analyzeTweet(tweet);
   });
   console.log('Final Score: ' + finalScore + ' out of ' + tweets.length + ' tweets.');
-  return [finalScore, tweets.length];
+  return [finalScore, positives, negatives, tweets.length - positives - negatives, tweets.length];
 }
 
 app.set('views', '.');
 app.set('view engine', 'ejs');
-
-var repetitions = 1;
-var ids = [];
-var bodies = [];
 
 function nextSearch(id, keyword, response) {
   var yo = twitterInstance.getSearch({ count: '100', q:keyword, lang: 'en', max_id: id}, error, function(data){
@@ -104,7 +107,7 @@ function nextSearch(id, keyword, response) {
 
     repetitions += 1;
     if (repetitions < 10) {
-      setTimeout(function(){nextSearch(lastID, keyword, response);},200);
+      setTimeout(function(){nextSearch(lastID, keyword, response);},100);
     } else {
       var final = processTweets(bodies);
       response.render('index', {data: final});
@@ -113,10 +116,11 @@ function nextSearch(id, keyword, response) {
 }
 
 app.get('/test', function(request, response) {
-  //todo:  scale this to perform 10 calls, 100 count each using id's
+  positives = 0;
+  negatives = 0;
   bodies = [];  //tweet bodies
   ids = [];
-  var keyword = 'Beer';
+  var keyword = 'Trump';
 
   var twitterData = twitterInstance.getSearch({ count: '100', q:keyword, lang: 'en', result_type: 'recent'}, error, function(data){
     data = JSON.parse(data);
@@ -129,9 +133,8 @@ app.get('/test', function(request, response) {
     });
     ids = ids.sort();
     var lastID = ids[0] - 100;
-    nextSearch(lastID, keyword, response);
+    setTimeout(function() {nextSearch(lastID, keyword, response);}, 100);
   });
-
 });
 
 // app.get('/twitter/*', proxyTwitter);
