@@ -96,7 +96,7 @@ app.set('views', '.');
 app.set('view engine', 'ejs');
 
 function nextSearch(id, keyword, response) {
-  var yo = twitterInstance.getSearch({ count: '100', q:keyword, lang: 'en', max_id: id}, error, function(data){
+  var yo = twitterInstance.getSearch({ count: '1', q:keyword, lang: 'en', max_id: id}, error, function(data){
     data = JSON.parse(data);
     data = data.statuses;
     data.forEach(function(d) {
@@ -111,19 +111,23 @@ function nextSearch(id, keyword, response) {
       setTimeout(function(){nextSearch(lastID, keyword, response);},200);
     } else {
       var final = processTweets(bodies);
+      console.log('this is the data ' + final);
       response.render('index', {data: final});
     }
   });
 }
 
-app.get('/test', function(request, response) {
+app.get('/search/*', function(request, response) {
+  console.log('request.params' + request.params);
+  console.log('request.params[0]' + request.params[0]);
   positives = 0;
   negatives = 0;
   bodies = [];  //tweet bodies
   ids = [];
-  var keyword = searchKey;
+  // var keyword = searchKey;
+  var keyword = request.params[0];
 
-  var twitterData = twitterInstance.getSearch({ count: '10', q:keyword, lang: 'en', result_type: 'recent'}, error, function(data){
+  var twitterData = twitterInstance.getSearch({ count: '1', q:keyword, lang: 'en', result_type: 'recent'}, error, function(data){
     data = JSON.parse(data);
     data = data.statuses;
     // console.log(data);
