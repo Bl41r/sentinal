@@ -33,6 +33,9 @@ formInput.submit(function(event){
     console.log('yay!');
     console.log(data);
     resultsData = data;
+    if (localStorage.getItem('pastresults') === null){
+      localStorage.setItem('pastresults', JSON.stringify(data));
+    }
   })
   .done(updatePage);
 });
