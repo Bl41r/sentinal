@@ -60,7 +60,9 @@
 
       // Callback that draws the pie chart
       function drawChart2() {
-
+        if (dataR[13] === '0') {
+          return;
+        }
         // Create the data table for Anthony's pizza.
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Sentiment');

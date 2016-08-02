@@ -106,26 +106,18 @@ function nextSearch(id, keyword, response) {
       if (final[0] < 0) {sentiment = 'negative';}
       if (final[0] === 0) {sentiment = 'neutral';}
       final.push(sentiment);
-      // var final = [10,3,3,4,10];
       console.log('this is the data ' + final);
-      // response.render('index', {data: final});
       response.json(final);
     }
   });
 }
 
 app.get('/search/*', function(request, response) {
-  // console.log('request.params' + request.params);
-  // console.log(request);
-  // console.log('request.params[0]: ' + request.params[0]);
   positives = 0;
   negatives = 0;
   bodies = [];  //tweet bodies
   ids = [];
-  // var keyword = searchKey;
   var keyword = arguments[0].params['0'];
-  console.log('arguments[0].params 0: ', arguments[0].params['0']);
-  console.log('keyword: ', keyword);
 
   var twitterData = twitterInstance.getSearch({ count: '100', q:keyword, lang: 'en', result_type: 'recent'}, error, function(data){
     data = JSON.parse(data);
@@ -165,8 +157,8 @@ app.get('/share/*', function(request, response) {
   var neg2 = parseInt(arguments[0].query['n2']);
   var neu2 = parseInt(arguments[0].query['neu2']);
   var tot2 = pos2 + neg2 + neu2;
+
   dataR = [[term1, sentiment1, score1, pos1, neg1, neu1, tot1],[term2, sentiment2, score2, pos2, neg2, neu2, tot2]];
-  // response.json(dataR);
   response.render('share', {data: dataR});
 });
 //------------------------
