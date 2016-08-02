@@ -8,8 +8,10 @@ var url;
 formInput.submit(function(event){
   event.preventDefault();
   var searchTerm = event.target.term.value;
+  console.log(event);
+  console.log('event target stuff: ', event.target.term.value);
   console.log('search term:' + searchTerm);
   url = '/search/' + searchTerm;
-  // window.location.href = url;
-  $.get(url);
+  window.location.href = url;
+  // $.get(url);
 });
