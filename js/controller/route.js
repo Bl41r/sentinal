@@ -7,7 +7,6 @@ window.onload = function() {
 page('/', home);
 page('/faq', faq);
 page('/about' , about);
-page('*' , home);
 page();
 
 function home() {
