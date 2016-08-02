@@ -1,0 +1,96 @@
+<html>
+  <head>
+    <head>
+      <title>Sentinal</title>
+      <base href="/">
+      <!-- JQuery CDN -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+      <!-- Bootstrap CSS CDN-->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+      <!-- Font Awsome CDN-->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+      <!-- External CSS -->
+      <link rel="stylesheet" href="css/base.css">
+      <link rel="stylesheet" href="css/layout.css">
+      <link rel="stylesheet" href="css/module.css">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+    <h2>Retrieved <%= data %></h2>
+	  <script>
+	    var dataR = "<%= data %>".split(',');
+	    console.log(dataR);
+      $('h2').hide();
+    </script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+      // Load Charts and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Draw the pie chart for Sarah's pizza when Charts is loaded.
+      google.charts.setOnLoadCallback(drawChart1);
+
+      // Draw the pie chart for the Anthony's pizza when Charts is loaded.
+      google.charts.setOnLoadCallback(drawChart2);
+
+      // Callback that draws the pie chart for Sarah's pizza.
+      function drawChart1() {
+
+        // Create the data table
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Sentiment');
+        data.addColumn('number', 'Value');
+        data.addRows([
+          ['Positive', parseInt(dataR[3])],
+          ['Negative', parseInt(dataR[4])],
+          ['Neutral', parseInt(dataR[5])],
+        ]);
+
+        // Set options
+        var options = {title: dataR[0],
+          width:700,
+          height:500,
+          colors:['#aaf66d', '#d84949', '#6dcff6'],
+          is3D: true
+        };
+
+        // Instantiate
+        var chart = new google.visualization.PieChart(document.getElementById('chart1_div'));
+        chart.draw(data, options);
+      }
+
+      // Callback that draws the pie chart
+      function drawChart2() {
+
+        // Create the data table for Anthony's pizza.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Sentiment');
+        data.addColumn('number', 'Value');
+        data.addRows([
+          ['Positive', parseInt(dataR[10])],
+          ['Negative', parseInt(dataR[11])],
+          ['Neutral', parseInt(dataR[12])],
+        ]);
+
+        var options = {title: dataR[7],
+          width:700,
+          height:500,
+          colors:['#aaf66d', '#d84949', '#6dcff6'],
+          is3D: true
+        };
+
+        // Instantiate
+        var chart = new google.visualization.PieChart(document.getElementById('chart2_div'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <!--Table and divs that hold the pie charts-->
+    <table class="columns">
+      <tr>
+        <td><div id="chart1_div" style="border: 1px solid #ccc"></div></td>
+        <td><div id="chart2_div" style="border: 1px solid #ccc"></div></td>
+      </tr>
+    </table>
+  </body>
+</html>
