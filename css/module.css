@@ -122,5 +122,6 @@ a.socialIcon:hover, .socialHoverClass {
 }
 
 #spin-wheel img {
+	padding-top: 2rem;
   margin: 0 auto;
 }
