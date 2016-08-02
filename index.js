@@ -9,7 +9,7 @@ var express = require('express'),
 module.exports = require('./lib/Twitter');
 
 var repetitions = 1;
-var max_reps = 1; //each rep is 100 tweets
+var max_reps = 5; //each rep is 100 tweets
 var ids = [];
 var bodies = [];
 var positives = 0;
@@ -85,7 +85,7 @@ function processTweets(tweets) {
 }
 
 function nextSearch(id, keyword, response) {
-  var yo = twitterInstance.getSearch({ count: '10', q:keyword, lang: 'en', max_id: id}, error, function(data){
+  var yo = twitterInstance.getSearch({ count: '100', q:keyword, lang: 'en', max_id: id}, error, function(data){
     data = JSON.parse(data);
     data = data.statuses;
     data.forEach(function(d) {
@@ -97,7 +97,7 @@ function nextSearch(id, keyword, response) {
     var lastID = ids[0] - 100;
     repetitions += 1;
     if (repetitions < max_reps) {
-      // setTimeout(function(){nextSearch(lastID, keyword, response);},200);
+      setTimeout(function(){nextSearch(lastID, keyword, response);},250);
     } else {
       var final = processTweets(bodies);
       final.push(keyword);
@@ -127,7 +127,7 @@ app.get('/search/*', function(request, response) {
   console.log('arguments[0].params 0: ', arguments[0].params['0']);
   console.log('keyword: ', keyword);
 
-  var twitterData = twitterInstance.getSearch({ count: '10', q:keyword, lang: 'en', result_type: 'recent'}, error, function(data){
+  var twitterData = twitterInstance.getSearch({ count: '100', q:keyword, lang: 'en', result_type: 'recent'}, error, function(data){
     data = JSON.parse(data);
     data = data.statuses;
     // console.log(data);
@@ -138,7 +138,7 @@ app.get('/search/*', function(request, response) {
     });
     ids = ids.sort();
     var lastID = ids[0] - 100;
-    setTimeout(function() {nextSearch(lastID, keyword, response);}, 200);
+    setTimeout(function() {nextSearch(lastID, keyword, response);}, 250);
   });
 });
 

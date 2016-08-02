@@ -27,11 +27,13 @@ formInput.submit(function(event){
   console.log('event target stuff: ', event.target.term.value);
   console.log('search term:' + searchTerm);
   url = '/search/' + searchTerm;
+  document.getElementById('spin-wheel').style.display = 'block';
   // window.location.href = url;
   $.get(url)
   .success(function(data){
     console.log('yay!');
     console.log(data);
+    document.getElementById('spin-wheel').style.display = 'none';
     resultsData = data;
     if (localStorage.getItem('pastresults') === null){
       localStorage.setItem('pastresults', JSON.stringify(data));
