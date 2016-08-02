@@ -3,6 +3,8 @@
 <head>
   <title>Sentinal</title>
   <base href="/">
+  <!-- ajax for google charts -->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <!-- Bootstrap CSS CDN-->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <!-- Font Awsome CDN-->
@@ -58,7 +60,15 @@
 			  <p id="result-text">Twitter sentiment for <span id="search-term"></span> is <span id="sentiment"></span>.</p>
 
 			  <!--Div that will hold the pie chart-->
-			  <div id="chart_div"></div>
+			  <!-- <div id="chart_div"></div> -->
+
+        <!--Table and divs that hold the pie charts-->
+        <table id="chart-table">
+          <tr>
+            <td><div id="keyword1" style="border: 1px solid #ccc"></div></td>
+            <td><div id="keyword2" style="border: 1px solid #ccc"></div></td>
+          </tr>
+        </table>
 
 			  <!--Social share icons-->
 				<ul class="social-network social-circle">
@@ -141,9 +151,8 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   <!-- Page.js -->
   <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
-  <!-- ajax for google charts -->
-  <script src="https://www.gstatic.com/charts/loader.js"></script>
   <!-- views -->
+  <script src="/js/view/app.js"></script>
   <script src="/js/view/chart.js"></script>
   <!-- controllers -->
   <script src="/js/controller/search.js"></script>
