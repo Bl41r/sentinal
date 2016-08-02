@@ -9,7 +9,7 @@ google.charts.load('current', {'packages':['corechart']});
 
 function loadChart() {
   console.log('in load chart');
-  
+
   if (chart1 !== null) {
     chart1.clearChart();
   }
@@ -37,13 +37,14 @@ function loadChart() {
       'width':700,
       'height':500,
       'colors':['#aaf66d', '#d84949', '#6dcff6'],
-      'titleTextStyle':{ 
-                        color: '#333',
-                        fontName: 'Open Sans, Avenir Next, Helvetica Neue',
-                        fontSize: 24,
-                        bold: false,
-                        italic: false 
-                        },
+      'chartArea.top': 1,
+      'titleTextStyle':{
+        color: '#333',
+        fontName: 'Open Sans, Avenir Next, Helvetica Neue',
+        fontSize: 24,
+        bold: false,
+        italic: false
+      },
     };
 
     // Instantiate and draw our chart, passing in some options.
@@ -78,15 +79,15 @@ function loadChart() {
           'title': 'Twitter sentiment for ' + pastResultsData[5] + ' is ' + pastResultsData[6],
           'width':700,
           'height':500,
-      'colors':['#aaf66d', '#d84949', '#6dcff6'],
-      'titleTextStyle':{ 
-                        color: '#333',
-                        fontName: 'Open Sans, Avenir Next, Helvetica Neue',
-                        fontSize: 24,
-                        bold: false,
-                        italic: false 
-                        },
-    };
+          'colors':['#aaf66d', '#d84949', '#6dcff6'],
+          'titleTextStyle':{
+            color: '#333',
+            fontName: 'Open Sans, Avenir Next, Helvetica Neue',
+            fontSize: 24,
+            bold: false,
+            italic: false
+          },
+        };
 
         chart2 = new google.visualization.PieChart(document.getElementById('keyword2'));
         chart2.draw(data2, options2);
