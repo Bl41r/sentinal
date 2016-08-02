@@ -42,7 +42,7 @@
 
   <div class="container" id="content">
   	<div class="section" id="home-section">
-			<h1>Sentinal html</h1>
+			<h1>Sentinal</h1>
 			<p id="tagline">Twitter sentiment analysis for any word</p>
 
 			<form class="search-form">
@@ -55,14 +55,6 @@
 		  </form>
 
 		  <!-- RESULT -->
-		  <div id=result>
-	      <div id=numbers>
-	        <h2>Retrieved <%= data %></h2>
-	        <script>
-	          var dataR = "<%= data %>".split(',');
-	          console.log(dataR);
-	        </script>
-	      </div>
 			  <p id="result-text">Twitter sentiment for <span id="search-term"></span> is <span id="sentiment"></span>.</p>
 
 			  <!--Div that will hold the pie chart-->
@@ -151,6 +143,8 @@
   <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
   <!-- ajax for google charts -->
   <script src="https://www.gstatic.com/charts/loader.js"></script>
+  <!-- views -->
+  <script src="/js/view/chart.js"></script>
   <!-- controllers -->
   <script src="/js/controller/search.js"></script>
   <!-- controllers -->
@@ -158,8 +152,6 @@
   <script src="/js/controller/aboutController.js"></script>
   <script src="/js/controller/faqController.js"></script>
   <script src="/js/controller/route.js"></script>
-  <!-- views -->
-  <script src="/js/view/chart.js"></script>
 
 </body>
 </html>
