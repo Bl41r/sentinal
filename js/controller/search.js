@@ -11,6 +11,12 @@ function updatePage() {
   console.log('This would have been way easier than templates..');
   $('#search-term').text(resultsData[5]);
   $('#sentiment').text(resultsData[6]);
+  $('#result-section').fadeIn();
+
+  if (resultsData[4] === 0) {
+    $('#result-text').text('There are no results for ' + resultsData[5]);
+  }
+
   loadChart();
 }
 
