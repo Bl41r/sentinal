@@ -114,6 +114,12 @@ function nextSearch(id, keyword, response) {
       // setTimeout(function(){nextSearch(lastID, keyword, response);},200);
     } else {
       var final = processTweets(bodies);
+      final.push(keyword);
+      var sentiment;
+      if (final[0] > 0) {sentiment = 'positive';}
+      if (final[0] < 0) {sentiment = 'negative';}
+      if (final[0] === 0) {sentiment = 'neutral';}
+      final.push(sentiment);
       // var final = [10,3,3,4,10];
       console.log('this is the data ' + final);
       response.render('index', {data: final});

@@ -23,7 +23,8 @@ function drawChart() {
     ['Negative', parseInt(dataR[2])],
     ['Neutral', parseInt(dataR[3])]
   ]);
-
+  $('#sentiment').text(dataR[6]);
+  $('#search-term').text(dataR[5]);
   // Set chart options
   var options = {
     'width':700,
