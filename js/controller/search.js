@@ -4,6 +4,15 @@
 var submitBtn = $('.btn-default');
 var formInput = $('.search-form');
 var url;
+var resultsData;
+
+function updatePage() {
+  //make chart, fadeIn results, etc.
+  console.log('This would have been way easier than templates..');
+  $('#search-term').text(resultsData[5]);
+  $('#sentiment').text(resultsData[6]);
+  loadChart();
+}
 
 formInput.submit(function(event){
   event.preventDefault();
@@ -12,6 +21,12 @@ formInput.submit(function(event){
   console.log('event target stuff: ', event.target.term.value);
   console.log('search term:' + searchTerm);
   url = '/search/' + searchTerm;
-  window.location.href = url;
-  // $.get(url);
+  // window.location.href = url;
+  $.get(url)
+  .success(function(data){
+    console.log('yay!');
+    console.log(data);
+    resultsData = data;
+  })
+  .done(updatePage);
 });
