@@ -10,12 +10,15 @@ google.charts.setOnLoadCallback(drawChart);
 // instantiates the pie chart, passes in the data and
 // draws it.
 function drawChart() {
-
+  console.log(dataR);
   // Create the data table.
   var data = new google.visualization.DataTable();
   data.addColumn('string', 'Topping');
   data.addColumn('number', 'Slices');
   data.addRows([
+    // ['Positive', 10],
+    // ['Negative', 5],
+    // ['Neutral', 5]
     ['Positive', parseInt(dataR[1])],
     ['Negative', parseInt(dataR[2])],
     ['Neutral', parseInt(dataR[3])]
