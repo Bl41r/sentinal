@@ -14,8 +14,10 @@ i {
 	font-size: 2rem;
 }
 
-#result-text {
-	font-size: 3rem;
+#no_results {
+	font-size: 22px;
+	text-align: center;
+    padding-top: 3rem;
 }
 
 .panel-footer {

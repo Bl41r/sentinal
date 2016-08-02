@@ -8,15 +8,17 @@ var resultsData;
 
 function updatePage() {
   //make chart, fadeIn results, etc.
-  console.log('This would have been way easier than templates..');
   $('#search-term').text(resultsData[5]);
   $('#sentiment').text(resultsData[6]);
   $('#result-section').fadeIn();
 
   if (resultsData[4] === 0) {
-    $('#result-text').text('There are no results for ' + resultsData[5]);
+    $('#no_results').fadeIn();
+    $('#no_results').text('There are no results for ' + resultsData[5]);
+    return;
+  } else {
+      $('#no_results').fadeOut();
   }
-
   loadChart();
 }
 
@@ -31,11 +33,10 @@ formInput.submit(function(event){
   // window.location.href = url;
   $.get(url)
   .success(function(data){
-    console.log('yay!');
     console.log(data);
     document.getElementById('spin-wheel').style.display = 'none';
     resultsData = data;
-    if (localStorage.getItem('pastresults') === null){
+    if (localStorage.getItem('pastresults') === null && resultsData[4] !== 0){
       localStorage.setItem('pastresults', JSON.stringify(data));
     }
   })
