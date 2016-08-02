@@ -2,7 +2,7 @@
   opacity: 0.7;
 }
 
-.grey-bg-hover:hover {
+.nav-item:hover {
 	background-color: #eee;
 }
 
@@ -19,7 +19,7 @@ i {
 }
 
 .panel-footer {
-	margin-top: 5rem;
+  margin-top: 5rem;
   background-image: linear-gradient(#FFF, #6dcff6);
   border-top: none;
   height: 5rem;
@@ -28,19 +28,10 @@ i {
   width: 100%;
 }
 
-
-
-
-
-
-
-
-
 /*social icons, we did not write this code, its from
 http://bootsnipp.com/snippets/featured/spinning-social-icons */
 ul.social-network {
 	list-style: none;
-	text-align: center;
 	display: block;
 }
 
