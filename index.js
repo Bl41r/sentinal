@@ -144,6 +144,24 @@ app.get('/search/*', function(request, response) {
 
 app.use(express.static('./'));
 
+app.get('/share/*', function(request, response) {
+//this will send an HTML document with the chart filled in
+  //--parse query
+  var term = arguments[0].params['0'];
+  var sentiment = arguments[0].query['sent'];
+  var score = parseInt(arguments[0].query['s']);
+  var pos = parseInt(arguments[0].query['p']);
+  var neg = parseInt(arguments[0].query['n']);
+  var neu = parseInt(arguments[0].query['neu']);
+  var tot = pos + neg + neu;
+
+  response.json([term, sentiment,score, pos, neg, neu, tot]);
+});
+
+app.get('*', function(request, response) {
+  response.sendFile('index.html', { root: '.' });
+});
+
 app.listen(port, function() {
   console.log('Server started on port ' + port + '!');
 });
