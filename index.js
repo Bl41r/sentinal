@@ -85,7 +85,7 @@ function processTweets(tweets) {
 }
 
 function nextSearch(id, keyword, response) {
-  var yo = twitterInstance.getSearch({ count: '10', q:keyword, lang: 'en', max_id: id}, error, function(data){
+  var yo = twitterInstance.getSearch({ count: '100', q:keyword, lang: 'en', max_id: id}, error, function(data){
     data = JSON.parse(data);
     data = data.statuses;
     data.forEach(function(d) {

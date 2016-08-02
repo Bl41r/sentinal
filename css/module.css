@@ -100,7 +100,7 @@ a.socialIcon:hover, .socialHoverClass {
 }
 
 .social-circle a {
- background-color: #D3D3D3;   
+ background-color: #D3D3D3;
 }
 .outline:hover, .outline:active, .outline:focus {
 	color: white;
@@ -113,4 +113,12 @@ a.socialIcon:hover, .socialHoverClass {
 	box-shadow: none;
 }
 
+#spin-wheel {
+  display: none;
+  width:100%;
+  text-align: center;
+}
 
+#spin-wheel img {
+  margin: 0 auto;
+}
