@@ -40,17 +40,6 @@ var config = {
 };
 
 var twitterInstance = new Twitter(config);
-
-// var proxyTwitter = function(request, response) {
-//   console.log('Routing Twitter request for ', request.params[0]);
-//   (
-//     requireProxy({
-//       url: 'https://api.twitter.com/' + request.params[0],
-//       headers: { Authorization: 'token ' + process.env.TWITTER }
-//     })
-//   )(request, response);
-// };
-
 var dictionary = JSON.parse(fs.readFileSync('js/model/sentiment_dictionary.json'));
 
 function cleanup(tweet) { //called by analyzeTweet, expects a string
@@ -95,9 +84,6 @@ function processTweets(tweets) {
   return [finalScore, positives, negatives, tweets.length - positives - negatives, tweets.length];
 }
 
-app.set('views', '.');
-app.set('view engine', 'ejs');
-
 function nextSearch(id, keyword, response) {
   var yo = twitterInstance.getSearch({ count: '10', q:keyword, lang: 'en', max_id: id}, error, function(data){
     data = JSON.parse(data);
@@ -114,9 +100,16 @@ function nextSearch(id, keyword, response) {
       // setTimeout(function(){nextSearch(lastID, keyword, response);},200);
     } else {
       var final = processTweets(bodies);
+      final.push(keyword);
+      var sentiment;
+      if (final[0] > 0) {sentiment = 'positive';}
+      if (final[0] < 0) {sentiment = 'negative';}
+      if (final[0] === 0) {sentiment = 'neutral';}
+      final.push(sentiment);
       // var final = [10,3,3,4,10];
       console.log('this is the data ' + final);
-      response.render('index', {data: final});
+      // response.render('index', {data: final});
+      response.json(final);
     }
   });
 }
@@ -149,14 +142,7 @@ app.get('/search/*', function(request, response) {
   });
 });
 
-// app.get('/twitter/*', proxyTwitter);
-
 app.use(express.static('./'));
-
-app.get('/', function(request, response) {
-  console.log('New request:', request.url);
-  response.sendFile('index.ejs', { root: '.' });
-});
 
 app.listen(port, function() {
   console.log('Server started on port ' + port + '!');
