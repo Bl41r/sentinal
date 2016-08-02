@@ -106,26 +106,18 @@ function nextSearch(id, keyword, response) {
       if (final[0] < 0) {sentiment = 'negative';}
       if (final[0] === 0) {sentiment = 'neutral';}
       final.push(sentiment);
-      // var final = [10,3,3,4,10];
       console.log('this is the data ' + final);
-      // response.render('index', {data: final});
       response.json(final);
     }
   });
 }
 
 app.get('/search/*', function(request, response) {
-  // console.log('request.params' + request.params);
-  // console.log(request);
-  // console.log('request.params[0]: ' + request.params[0]);
   positives = 0;
   negatives = 0;
   bodies = [];  //tweet bodies
   ids = [];
-  // var keyword = searchKey;
   var keyword = arguments[0].params['0'];
-  console.log('arguments[0].params 0: ', arguments[0].params['0']);
-  console.log('keyword: ', keyword);
 
   var twitterData = twitterInstance.getSearch({ count: '100', q:keyword, lang: 'en', result_type: 'recent'}, error, function(data){
     data = JSON.parse(data);
@@ -144,19 +136,32 @@ app.get('/search/*', function(request, response) {
 
 app.use(express.static('./'));
 
+//share stuff--------------------
+app.set('views', '.');
+app.set('view engine', 'ejs');
 app.get('/share/*', function(request, response) {
 //this will send an HTML document with the chart filled in
   //--parse query
-  var term = arguments[0].params['0'];
-  var sentiment = arguments[0].query['sent'];
-  var score = parseInt(arguments[0].query['s']);
-  var pos = parseInt(arguments[0].query['p']);
-  var neg = parseInt(arguments[0].query['n']);
-  var neu = parseInt(arguments[0].query['neu']);
-  var tot = pos + neg + neu;
+  var term1 = arguments[0].params['0'];
+  var sentiment1 = arguments[0].query['sent1'];
+  var score1 = parseInt(arguments[0].query['s1']);
+  var pos1 = parseInt(arguments[0].query['p1']);
+  var neg1 = parseInt(arguments[0].query['n1']);
+  var neu1 = parseInt(arguments[0].query['neu1']);
+  var tot1 = pos1 + neg1 + neu1;
 
-  response.json([term, sentiment,score, pos, neg, neu, tot]);
+  var term2 = arguments[0].query['t2'];
+  var sentiment2 = arguments[0].query['sent2'];
+  var score2 = parseInt(arguments[0].query['s2']);
+  var pos2 = parseInt(arguments[0].query['p2']);
+  var neg2 = parseInt(arguments[0].query['n2']);
+  var neu2 = parseInt(arguments[0].query['neu2']);
+  var tot2 = pos2 + neg2 + neu2;
+
+  dataR = [[term1, sentiment1, score1, pos1, neg1, neu1, tot1],[term2, sentiment2, score2, pos2, neg2, neu2, tot2]];
+  response.render('share', {data: dataR});
 });
+//------------------------
 
 app.get('*', function(request, response) {
   response.sendFile('index.html', { root: '.' });

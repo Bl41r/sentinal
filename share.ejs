@@ -1,0 +1,206 @@
+<html>
+  <head>
+    <head>
+      <title>Sentinal</title>
+      <base href="/">
+      <!-- JQuery CDN -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+      <!-- Bootstrap CSS CDN-->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+      <!-- Font Awsome CDN-->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+      <!-- External CSS -->
+      <link rel="stylesheet" href="css/base.css">
+      <link rel="stylesheet" href="css/layout.css">
+      <link rel="stylesheet" href="css/module.css">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+    <h2>Retrieved <%= data %></h2>
+	  <script>
+	    var dataR = "<%= data %>".split(',');
+	    console.log(dataR);
+      $('h2').hide();
+    </script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+      // Load Charts and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Draw the pie chart for Sarah's pizza when Charts is loaded.
+      google.charts.setOnLoadCallback(drawChart1);
+
+      // Draw the pie chart for the Anthony's pizza when Charts is loaded.
+      google.charts.setOnLoadCallback(drawChart2);
+
+      // Callback that draws the pie chart for Sarah's pizza.
+      function drawChart1() {
+
+        // Create the data table
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Sentiment');
+        data.addColumn('number', 'Value');
+        data.addRows([
+          ['Positive', parseInt(dataR[3])],
+          ['Negative', parseInt(dataR[4])],
+          ['Neutral', parseInt(dataR[5])],
+        ]);
+
+        // Set options
+        var options = {title: dataR[0],
+          width:700,
+          height:500,
+          colors:['#aaf66d', '#d84949', '#6dcff6'],
+          is3D: true
+        };
+
+        // Instantiate
+        var chart = new google.visualization.PieChart(document.getElementById('chart1_div'));
+        chart.draw(data, options);
+      }
+
+      // Callback that draws the pie chart
+      function drawChart2() {
+        if (dataR[13] === '0') {
+          return;
+        }
+        // Create the data table for Anthony's pizza.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Sentiment');
+        data.addColumn('number', 'Value');
+        data.addRows([
+          ['Positive', parseInt(dataR[10])],
+          ['Negative', parseInt(dataR[11])],
+          ['Neutral', parseInt(dataR[12])],
+        ]);
+
+        var options = {title: dataR[7],
+          width:700,
+          height:500,
+          colors:['#aaf66d', '#d84949', '#6dcff6'],
+          is3D: true
+        };
+
+        // Instantiate
+        var chart = new google.visualization.PieChart(document.getElementById('chart2_div'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <!-- navbar -->
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"><img id="logo" src="img/logo.png"></a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="nav-item" id="home-nav"><a href="/"><i class="fa fa-lg fa-home"></i> Home</a></li>
+            <li class="nav-item" id="faq-nav"><a href="/faq"><i class="fa fa-lg fa-question-circle"></i> F.A.Q</a></li>
+            <li class="nav-item" id="about-nav"><a href="/about"><i class="fa fa-lg fa-info-circle"></i> About us</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="grey-bg-hover"><a href="https://github.com/bitedgeco/sentinal" target="_blank"><i class="fa fa-lg fa-github"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav><!-- End of navbar -->
+    <div class="container" id="content">
+    	<div class="section" id="home-section">
+  			<h1>Sentinal</h1>
+  			<p id="tagline">Twitter sentiment analysis for any word</p>
+  		  <!-- RESULT -->
+  	  	<div id="result-section">
+  			  <p id="result-text">Twitter sentiment for <span id="search-term"></span> is <span id="sentiment"></span>.</p>
+  			  <!--Div that will hold the pie chart-->
+  			  <!-- <div id="chart_div"></div> -->
+          <!--Table and divs that hold the pie charts-->
+          <table id="chart-table" class="columns">
+            <tr>
+              <td><div id="chart1_div" style="border: 1px solid #ccc"></div></td>
+              <td><div id="chart2_div" style="border: 1px solid #ccc"></div></td>
+            </tr>
+          </table>
+  		  </div><!-- End of result -->
+  		</div><!-- End of home-section -->
+      <div class="section" id="faq-section">
+  			<h1>Frequently asked questions</h1>
+  			<h2>What is this?</h2>
+
+  			<p>Sentinel is a free and open source tool that lets you enter any word or phrase and returns the current sentiment about that word or phrase on Twitter.</p>
+
+  			<p>We do this by analyzing the last 1000 tweets which contain the word you entered into the search field.</p>
+
+  			<p>Every word in those tweets is checked for negativity or positivity using the <a href="http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010" target="_blank">AFINN111</a> sentiment analysis dictionary and every tweet is given an overall score for its sentiment being positive, negative or neutral.</p>
+
+  			<h2>A tweet said xyz which is positive but would be marked as negative</h2>
+
+  			<p>Human language is complex and messy. There are many edge cases that we cannot account for. We counter this by having a large enough sample size, 1000 tweets, that the overall sentiment will come through and negate the effect of a few edge cases.</p>
+
+  			<p>One edge case we do deal with is that a word which is normally marked as positive or negative, will be marked as neutral if the word is proceeded by "not" as in "not good" or "not bad".</p>
+  		</div><!-- End of home-section -->
+
+  		<!-- ABOUT US -->
+    	<div class="section" id="about-section">
+  			<h1>About us</h1>
+  			<div class="row">
+  				<div class="col-md-3">
+  					<img class ="about-pic" src="img/generic_profile_pic.png">
+  					<h3>Uma Bangalore</h3>
+  					<p></p>
+  				</div>
+  				<div class="col-md-3">
+  					<img class ="about-pic" src="img/james_small_square.jpg">
+  					<h3>James Canning</h3>
+  					<p>James is a full stack developer and bitedge fanatic. He founded <a href="http://www.bitedge.co/" target="_blank">Bitedge</a> in 2013.</p>
+  				</div>
+  				<div class="col-md-3">
+  					<img class ="about-pic" src="img/generic_profile_pic.png">
+  					<h3>David Smith</h3>
+  					<p>David is a Code Fellows student interested in Data Analysis with Python.  You can read more about him and his projects <a href="http://bl41r.herokuapp.com">here</a></p>
+  				</div>
+  				<div class="col-md-3">
+  					<img class ="about-pic" src="img/generic_profile_pic.png">
+  					<h3>You!</h3>
+  					<p>Sentinal is a free and open source collaboration with all our <a href="https://github.com/bitedgeco/sentinal" target="_blank">code available on Github</a>. You can be involved by contributing to and improving this site</p>
+  				</div>
+  			</div>
+  		</div><!-- End of about-section -->
+  	</div><!-- End of content -->
+
+  	<!-- FOOTER -->
+  	<footer class="panel-footer">
+  		<!--Social share icons-->
+  		<ul class="social-network social-circle">
+  	    <li><a href="http://www.facebook.com/sharer.php?u=http://oururl.com" target="_blank" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+  	    <li><a href="https://twitter.com/home?status=Get%20the%20twitter%20sentiment%20for any%20word%20here%20http://oururl.com" target="_blank" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+  	    <li><a href="" id="clipboard-modal" class="icoLink" title="link" data-toggle="modal" data-target="#linkModal" ><i class="fa fa-link"></i></a></li>
+  	  </ul>
+  	  <!-- modal for link share -->
+  	  <div class="modal fade" id="linkModal" tabindex="-1" role="dialog" aria-labelledby="linkModalLabel">
+  	    <div class="modal-dialog modal-lg" role="document">
+  	      <div class="modal-content">
+  	        <div class="modal-header">
+  	          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  	          <h4 class="modal-title" id="myModalLabel">Please copy the following URL</h4>
+  	        </div>
+  	        <div class="modal-body">
+  	          <input id="modal-link" class="form-control" value="http://oururl.com">
+  	        </div>
+  	        <div class="modal-footer">
+  	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  	        </div>
+  	      </div>
+  	    </div>
+  	  </div>
+  	</footer>
+    <!-- Bootstrap JS CDN -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  </body>
+</html>
