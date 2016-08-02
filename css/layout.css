@@ -36,10 +36,13 @@ h1, #tagline, #result-text {
 	padding-bottom: 110px;
 }
 
+#chart-table {
+	table-layout: fixed;
+	margin-left: -7rem;
+}
+
 @media only screen and (min-width : 768px) {
 	#search {
 		max-width: 50%;
 	}
 }
-
-
