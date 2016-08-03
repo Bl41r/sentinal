@@ -9,7 +9,7 @@ h1, #tagline, #result-text {
 
 #search {
   margin: auto;
-  padding-top: 4rem;
+  padding-top: 3rem;
 }
 
 #search {
@@ -17,11 +17,15 @@ h1, #tagline, #result-text {
 }
 
 #result-section {
-	margin-top: -4rem;
+	margin-top: -3rem;
 }
 
 .social-network {
-	margin-top: -3rem;
+	text-align: center;
+}
+
+#chart_div {
+	padding-top: 30px;
 }
 
 .about-pic {

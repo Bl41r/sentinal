@@ -17,7 +17,7 @@ i {
 #no_results {
 	font-size: 22px;
 	text-align: center;
-    padding-top: 3rem;
+    padding-top: 4rem;
 }
 
 .panel-footer {
@@ -28,6 +28,18 @@ i {
   position: absolute;
   bottom: 0;
   width: 100%;
+}
+
+#spin-wheel {
+  visibility: hidden;
+  width:100%;
+  text-align: center;
+}
+
+#spin-wheel img {
+  max-width: 8rem;
+  padding-top: 2rem;
+  margin: 0 auto;
 }
 
 /*social icons, we did not write this code, its from
@@ -103,6 +115,7 @@ a.socialIcon:hover, .socialHoverClass {
 
 .social-circle a {
  background-color: #D3D3D3;
+
 }
 .outline:hover, .outline:active, .outline:focus {
 	color: white;
@@ -114,15 +127,4 @@ a.socialIcon:hover, .socialHoverClass {
 	color: gray;
 	box-shadow: none;
 }
-
-#spin-wheel {
-  visibility: hidden;
-  width:100%;
-  text-align: center;
-}
-
-#spin-wheel img {
-  max-width: 8rem;
-  padding-top: 2rem;
-  margin: 0 auto;
-}
+/*End social icons css*/
