@@ -10,7 +10,7 @@ function createLink(rData, oldData) {
   //create shareable link
   //ex: 'http://localhost:3000/share/Trump?sent1=negative&s1=3&p1=2&n1=3&neu1=5&t2=Hillary&sent2=positive&s2=5&p2=5&n2=3&neu2=5'
   if (baseUrl = 'localhost') {baseUrl = 'localhost:3000';}
-  var shareString = baseUrl + '/share/' + rData[0] + '?' + rData[1] + '?' + rData[2] + '?' + rData[3] + '?' + rData[4] + '?' + rData[5] + '?' + rData[6] + '?' + rData[7] 
+  var shareString = baseUrl + '/share/' + rData[0] + '?' + rData[1] + '?' + rData[2] + '?' + rData[3] + '?' + rData[4] + '?' + rData[5] + '?' + rData[6] + '?' + rData[7]
   + '?' + oldData[0] + '?' + oldData[1] + '?' + oldData[2] + '?' + oldData[3] + '?' + oldData[4] + '?' + oldData[5] + '?' + oldData[6] + '?' + oldData[7];
   console.log(shareString);
   return shareString;
@@ -28,7 +28,6 @@ function loadChart() {
 
   // Set a callback to run when the Google Visualization API is loaded.
   google.charts.setOnLoadCallback(drawChart1);
-
 
   // Callback that creates and populates a data table,
   // instantiates the pie chart, passes in the data and
@@ -113,12 +112,11 @@ function loadChart() {
 }
 
 function loadChartShare(){
-  var shareURL = window.location.href
+  var shareURL = window.location.href;
   var parameters = shareURL.split('share/');
   parameters = parameters[1].split('?');
   google.charts.setOnLoadCallback(drawChartShare);
-
-
+  console.log(parameters);
   function drawChartShare() {
     // Create the data table.
     var data1 = new google.visualization.DataTable();
@@ -150,8 +148,35 @@ function loadChartShare(){
     // Instantiate and draw our chart, passing in some options.
     chart1 = new google.visualization.PieChart(document.getElementById('keyword1'));
     chart1.draw(data1, options1);
+
+    if (parameters[13] !== '') {
+      var data2 = new google.visualization.DataTable();
+      data2.addColumn('string', 'Topping');
+      data2.addColumn('number', 'Slices');
+      data2.addRows([
+        ['Positive', parseInt(parameters[9])],
+        ['Negative', parseInt(parameters[10])],
+        ['Neutral', parseInt(parameters[11])]
+      ]);
+      // Set chart options
+      var options2 = {
+        'title': 'Twitter sentiment for ' + parameters[13] + ' is ' + parameters[14],
+        'width':500,
+        'height':400,
+        'colors':['#aaf66d', '#d84949', '#6dcff6'],
+        'titleTextStyle':{
+          color: '#333',
+          fontName: 'Open Sans, Avenir Next, Helvetica Neue',
+          fontSize: 24,
+          bold: false,
+          italic: false
+        },
+        'chartArea': {
+          'width': '100%',
+          'height': '65%'},
+      };
+      chart2 = new google.visualization.PieChart(document.getElementById('keyword2'));
+      chart2.draw(data2, options2);
+    }
   }
 }
-
-
-
