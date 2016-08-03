@@ -35,9 +35,10 @@ formInput.submit(function(event){
   $.get(url)
   .success(function(data){
     console.log(data);
-  $('#spin-wheel').css('visibility','hidden');
-  $('#social-section').fadeIn();
+    $('#spin-wheel').css('visibility','hidden');
+    $('#social-section').fadeIn();
     resultsData = data;
+    console.log('results data: ', resultsData);
     if (localStorage.getItem('pastresults') === null && resultsData[4] !== 0){
       localStorage.setItem('pastresults', JSON.stringify(data));
     }

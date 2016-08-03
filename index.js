@@ -98,7 +98,7 @@ function nextSearch(id, keyword, response) {
     repetitions += 1;
     if (repetitions < max_reps) {
       setTimeout(function(){nextSearch(lastID, keyword, response);},250);
-    } else {
+    } else {  //finished searching
       var final = processTweets(bodies);
       final.push(keyword);
       var sentiment;
@@ -107,6 +107,7 @@ function nextSearch(id, keyword, response) {
       if (final[0] === 0) {sentiment = 'neutral';}
       final.push(sentiment);
       console.log('this is the data ' + final);
+      final.push(new Date());
       response.json(final);
     }
   });
@@ -149,6 +150,7 @@ app.get('/share/*', function(request, response) {
   var neg1 = parseInt(arguments[0].query['n1']);
   var neu1 = parseInt(arguments[0].query['neu1']);
   var tot1 = pos1 + neg1 + neu1;
+  var date1 = parseInt(arguments[0].query['d1']);
 
   var term2 = arguments[0].query['t2'];
   var sentiment2 = arguments[0].query['sent2'];
@@ -157,8 +159,9 @@ app.get('/share/*', function(request, response) {
   var neg2 = parseInt(arguments[0].query['n2']);
   var neu2 = parseInt(arguments[0].query['neu2']);
   var tot2 = pos2 + neg2 + neu2;
+  var date2 = parseInt(arguments[0].query['d2']);
 
-  dataR = [[term1, sentiment1, score1, pos1, neg1, neu1, tot1],[term2, sentiment2, score2, pos2, neg2, neu2, tot2]];
+  dataR = [term1, sentiment1, score1, pos1, neg1, neu1, tot1, date1, term2, sentiment2, score2, pos2, neg2, neu2, tot2, date1];
   response.render('share', {data: dataR});
 });
 //------------------------

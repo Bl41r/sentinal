@@ -17,7 +17,7 @@
     <h2>Retrieved <%= data %></h2>
 	  <script>
 	    var dataR = "<%= data %>".split(',');
-	    console.log(dataR);
+	    console.log('dataR: ', dataR);
       $('h2').hide();
     </script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -68,9 +68,9 @@
         data.addColumn('string', 'Sentiment');
         data.addColumn('number', 'Value');
         data.addRows([
-          ['Positive', parseInt(dataR[10])],
-          ['Negative', parseInt(dataR[11])],
-          ['Neutral', parseInt(dataR[12])],
+          ['Positive', parseInt(dataR[12])],
+          ['Negative', parseInt(dataR[13])],
+          ['Neutral', parseInt(dataR[14])],
         ]);
 
         var options = {title: dataR[7],
