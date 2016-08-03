@@ -27,14 +27,12 @@ formInput.submit(function(event){
   event.preventDefault();
   $('#result-section').fadeIn();
   var searchTerm = event.target.term.value;
-  console.log(event);
-  console.log('event target stuff: ', event.target.term.value);
+  document.getElementById('searchfield').value = '';
   console.log('search term:' + searchTerm);
   url = '/search/' + searchTerm;
   $('#spin-wheel').css('visibility','visible');
   $.get(url)
   .success(function(data){
-    console.log(data);
     $('#spin-wheel').css('visibility','hidden');
     $('#social-section').fadeIn();
     resultsData = data;

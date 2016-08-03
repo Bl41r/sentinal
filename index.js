@@ -24,7 +24,7 @@ var error = function (err, response, body) {
   console.log(body);
 };
 var success = function (data) {
-  console.log(data);
+  // console.log(data);
   return data;
 };
 
@@ -43,8 +43,8 @@ var twitterInstance = new Twitter(config);
 var dictionary = JSON.parse(fs.readFileSync('js/model/sentiment_dictionary.json'));
 
 function formatDate(date) {
-  date = date.toString();
-  date = date.replace(/[ :\-()]/g, '');
+  // date = date.toString();
+  // date = date.replace(/[ :\-()]/g, '');
   return date;
 }
 
@@ -97,7 +97,7 @@ function nextSearch(id, keyword, response) {
     data.forEach(function(d) {
       bodies.push(d.text);
       ids.push(d.id);
-      console.log(d.text, d.id);
+      // console.log(d.text, d.id);
     });
     ids = ids.sort();
     var lastID = ids[0] - 100;
@@ -112,8 +112,8 @@ function nextSearch(id, keyword, response) {
       if (final[0] < 0) {sentiment = 'negative';}
       if (final[0] === 0) {sentiment = 'neutral';}
       final.push(sentiment);
-      console.log('this is the data ' + final);
       final.push( formatDate(new Date()) );
+      console.log('this is the data: ' + final);
       response.json(final);
     }
   });
@@ -133,7 +133,7 @@ app.get('/search/*', function(request, response) {
     data.forEach(function(d) {
       bodies.push(d.text);
       ids.push(d.id);
-      console.log(d.text, d.id);
+      // console.log(d.text, d.id);
     });
     ids = ids.sort();
     var lastID = ids[0] - 100;
