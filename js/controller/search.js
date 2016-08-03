@@ -34,12 +34,11 @@ formInput.submit(function(event){
   console.log('event target stuff: ', event.target.term.value);
   console.log('search term:' + searchTerm);
   url = '/search/' + searchTerm;
-  document.getElementById('spin-wheel').style.visibility = 'visible';
-  // window.location.href = url;
+  $('#spin-wheel').css('visibility','visible');
   $.get(url)
   .success(function(data){
     console.log(data);
-    document.getElementById('spin-wheel').style.visibility = 'hidden';
+  $('#spin-wheel').css('visibility','hidden');
     resultsData = data;
     if (localStorage.getItem('pastresults') === null && resultsData[4] !== 0){
       localStorage.setItem('pastresults', JSON.stringify(data));

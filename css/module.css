@@ -116,7 +116,6 @@ a.socialIcon:hover, .socialHoverClass {
 }
 
 #spin-wheel {
-  display: block;
   visibility: hidden;
   width:100%;
   text-align: center;
