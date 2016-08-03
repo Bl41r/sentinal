@@ -90,7 +90,7 @@ function loadChart() {
         ]);
         // Set chart options
         var options2 = {
-        'title': 'Twitter sentiment for ' + resultsData[5] + ' is ' + resultsData[6],
+        'title': 'Twitter sentiment for ' + pastResultsData[5] + ' is ' + pastResultsData[6],
         'width':500,
         'height':400,
         'colors':['#aaf66d', '#d84949', '#6dcff6'],
