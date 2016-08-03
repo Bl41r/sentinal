@@ -7,10 +7,6 @@ var url;
 var resultsData;
 
 function updatePage() {
-  //create shareable link
-  var baseUrl = 'http://' + window.location.hostname;
-  shareString = '/share/' + resultsData[5] + '?' + 'sent1=' + resultsData[6] + '&s1=' + resultsData[0] + '&p1=' + resultsData[1] + '&n1=' + resultsData[2] + '&neu1=' + resultsData[3] + '&t2=' + 'Hillary' + '&sent2=' + 'positive' + '&s2=' + '0' + '&p2=' + '0' + '&n2=' + '0' + '&neu2=' + '0';
-  console.log(baseUrl + shareString);
 
   //make chart, fadeIn results, etc.
   $('#search-term').text(resultsData[5]);
@@ -38,7 +34,7 @@ formInput.submit(function(event){
   $.get(url)
   .success(function(data){
     console.log(data);
-  $('#spin-wheel').css('visibility','hidden');
+    $('#spin-wheel').css('visibility','hidden');
     resultsData = data;
     if (localStorage.getItem('pastresults') === null && resultsData[4] !== 0){
       localStorage.setItem('pastresults', JSON.stringify(data));
