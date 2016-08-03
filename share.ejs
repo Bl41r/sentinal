@@ -16,8 +16,9 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
     <h2>Retrieved <%= data %></h2>
 	  <script>
+    console.log("<%= data %>");
 	    var dataR = "<%= data %>".split(',');
-	    console.log(dataR);
+	    console.log('dataR: ', dataR);
       $('h2').hide();
     </script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -68,12 +69,12 @@
         data.addColumn('string', 'Sentiment');
         data.addColumn('number', 'Value');
         data.addRows([
-          ['Positive', parseInt(dataR[10])],
-          ['Negative', parseInt(dataR[11])],
-          ['Neutral', parseInt(dataR[12])],
+          ['Positive', parseInt(dataR[12])],
+          ['Negative', parseInt(dataR[13])],
+          ['Neutral', parseInt(dataR[14])],
         ]);
 
-        var options = {title: dataR[7],
+        var options = {title: dataR[8],
           width:700,
           height:500,
           colors:['#aaf66d', '#d84949', '#6dcff6'],
@@ -117,7 +118,6 @@
   			<p id="tagline">Twitter sentiment analysis for any word</p>
   		  <!-- RESULT -->
   	  	<div id="result-section">
-  			  <p id="result-text">Twitter sentiment for <span id="search-term"></span> is <span id="sentiment"></span>.</p>
   			  <!--Div that will hold the pie chart-->
   			  <!-- <div id="chart_div"></div> -->
           <!--Table and divs that hold the pie charts-->
