@@ -16,6 +16,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
     <h2>Retrieved <%= data %></h2>
 	  <script>
+    console.log("<%= data %>");
 	    var dataR = "<%= data %>".split(',');
 	    console.log('dataR: ', dataR);
       $('h2').hide();
@@ -73,7 +74,7 @@
           ['Neutral', parseInt(dataR[14])],
         ]);
 
-        var options = {title: dataR[7],
+        var options = {title: dataR[8],
           width:700,
           height:500,
           colors:['#aaf66d', '#d84949', '#6dcff6'],
