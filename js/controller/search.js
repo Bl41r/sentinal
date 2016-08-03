@@ -7,16 +7,18 @@ var url;
 var resultsData;
 var link;
 
-function createLink() {
+function createLink(rData) {
   //create shareable link
+
   var baseUrl = 'http://' + window.location.hostname;
-  shareString = baseURL + '/share/' + resultsData[5] + '?' + 'sent1=' + resultsData[6] + '&s1=' + resultsData[0] + '&p1=' + resultsData[1] + '&n1=' + resultsData[2] + '&neu1=' + resultsData[3] + '&t2=' + 'Hillary' + '&sent2=' + 'positive' + '&s2=' + '0' + '&p2=' + '0' + '&n2=' + '0' + '&neu2=' + '0';
+  shareString = baseURL + '/share/' + r[5] + '?' + 'sent1=' + rData[6] + '&s1=' + rData[0] + '&p1=' + rData[1] + '&n1=' + rData[2] + '&neu1=' + rData[3] + '&t2=' + 'Hillary' + '&sent2=' + 'positive' + '&s2=' + '0' + '&p2=' + '0' + '&n2=' + '0' + '&neu2=' + '0';
+
   console.log(shareString);
   return shareString;
 }
 
 function updatePage() {
-  link = createLink();
+  link = createLink(resultsData);
 
   //make chart, fadeIn results, etc.
   $('#search-term').text(resultsData[5]);
