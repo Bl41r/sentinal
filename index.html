@@ -54,20 +54,46 @@
 			    </span>
 			  </div>
 		  </form>
+		</div>
+	  <!-- SPIN WHEEL -->
+		<section id="spin-wheel">
+      <img src="img/gears.gif">
+    </section>
+		<!-- RESULT -->
+	  <div class="section" id="result-section">
 
-      <!-- SPIN WHEEL -->
-      <section id="spin-wheel">
-        <img src="img/gears.gif">
-      </section>
-
-		  <!-- RESULT -->
-	  	<div id="result-section">
 	  	<div id="no_results"></div>
-			  <div class ="row" id="chart_div"></div>
-			  	<div class="col-md-6" id="keyword1"></div>
-			  	<div class="col-md-6" id="keyword2"></div>
-			  </div>
-		  </div><!-- End of result -->
+
+		  <div class ="row" id="chart_div">
+		  	<div class="col-md-6" id="keyword1"></div>
+		  	<div class="col-md-6" id="keyword2"></div>
+		  </div>
+		</div>
+		<div class="section" id="social-section">
+			<!--Social share icons-->
+			<ul class="social-network social-circle">
+		    <li><a href="http://www.facebook.com/sharer.php?u=http://oururl.com" target="_blank" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+		    <li><a href="https://twitter.com/home?status=Get%20the%20twitter%20sentiment%20for any%20word%20here%20http://oururl.com" target="_blank" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+		    <li><a href="" id="clipboard-modal" class="icoLink" title="link" data-toggle="modal" data-target="#linkModal" ><i class="fa fa-link"></i></a></li>
+		  </ul>
+		  <!-- modal for link share -->
+		  <div class="modal fade" id="linkModal" tabindex="-1" role="dialog" aria-labelledby="linkModalLabel">
+		    <div class="modal-dialog modal-lg" role="document">
+		      <div class="modal-content">
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		          <h4 class="modal-title" id="myModalLabel">Please copy the following URL</h4>
+		        </div>
+		        <div class="modal-body">
+		          <input id="modal-link" class="form-control" value="http://oururl.com">
+		        </div>
+		        <div class="modal-footer">
+		          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+	  </div><!-- End of social section -->
 
 		<!-- FAQ -->
   	<div class="section" id="faq-section">
@@ -116,31 +142,7 @@
 	</div><!-- End of content -->
 
 	<!-- FOOTER -->
-	<footer class="panel-footer">
-		<!--Social share icons-->
-		<ul class="social-network social-circle">
-	    <li><a href="http://www.facebook.com/sharer.php?u=http://oururl.com" target="_blank" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-	    <li><a href="https://twitter.com/home?status=Get%20the%20twitter%20sentiment%20for any%20word%20here%20http://oururl.com" target="_blank" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-	    <li><a href="" id="clipboard-modal" class="icoLink" title="link" data-toggle="modal" data-target="#linkModal" ><i class="fa fa-link"></i></a></li>
-	  </ul>
-	  <!-- modal for link share -->
-	  <div class="modal fade" id="linkModal" tabindex="-1" role="dialog" aria-labelledby="linkModalLabel">
-	    <div class="modal-dialog modal-lg" role="document">
-	      <div class="modal-content">
-	        <div class="modal-header">
-	          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	          <h4 class="modal-title" id="myModalLabel">Please copy the following URL</h4>
-	        </div>
-	        <div class="modal-body">
-	          <input id="modal-link" class="form-control" value="http://oururl.com">
-	        </div>
-	        <div class="modal-footer">
-	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        </div>
-	      </div>
-	    </div>
-	  </div>
-	</footer>
+	<footer class="panel-footer"></footer>
 
   <!-- JQuery CDN -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>

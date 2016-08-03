@@ -45,10 +45,9 @@ function loadChart() {
     // Set chart options
     var options1 = {
       'title': 'Twitter sentiment for ' + resultsData[5] + ' is ' + resultsData[6],
-      'width':700,
-      'height':500,
+      'width':500,
+      'height':400,
       'colors':['#aaf66d', '#d84949', '#6dcff6'],
-      'chartArea.top': 1,
       'titleTextStyle':{
         color: '#333',
         fontName: 'Open Sans, Avenir Next, Helvetica Neue',
@@ -56,6 +55,9 @@ function loadChart() {
         bold: false,
         italic: false
       },
+      'chartArea': {
+        'width': '100%', 
+        'height': '65%'},
     };
 
     // Instantiate and draw our chart, passing in some options.
@@ -88,17 +90,20 @@ function loadChart() {
         ]);
         // Set chart options
         var options2 = {
-          'title': 'Twitter sentiment for ' + pastResultsData[5] + ' is ' + pastResultsData[6],
-          'width':700,
-          'height':500,
-          'colors':['#aaf66d', '#d84949', '#6dcff6'],
-          'titleTextStyle':{
-            color: '#333',
-            fontName: 'Open Sans, Avenir Next, Helvetica Neue',
-            fontSize: 24,
-            bold: false,
-            italic: false
-          },
+        'title': 'Twitter sentiment for ' + pastResultsData[5] + ' is ' + pastResultsData[6],
+        'width':500,
+        'height':400,
+        'colors':['#aaf66d', '#d84949', '#6dcff6'],
+        'titleTextStyle':{
+          color: '#333',
+          fontName: 'Open Sans, Avenir Next, Helvetica Neue',
+          fontSize: 24,
+          bold: false,
+          italic: false
+        },
+        'chartArea': {
+          'width': '100%', 
+          'height': '65%'},
         };
 
         chart2 = new google.visualization.PieChart(document.getElementById('keyword2'));

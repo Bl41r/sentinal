@@ -25,6 +25,7 @@ function updatePage() {
 
 formInput.submit(function(event){
   event.preventDefault();
+  $('#result-section').fadeIn();
   var searchTerm = event.target.term.value;
   console.log(event);
   console.log('event target stuff: ', event.target.term.value);
@@ -34,7 +35,8 @@ formInput.submit(function(event){
   $.get(url)
   .success(function(data){
     console.log(data);
-    $('#spin-wheel').css('visibility','hidden');
+  $('#spin-wheel').css('visibility','hidden');
+  $('#social-section').fadeIn();
     resultsData = data;
     if (localStorage.getItem('pastresults') === null && resultsData[4] !== 0){
       localStorage.setItem('pastresults', JSON.stringify(data));
