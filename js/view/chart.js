@@ -1,26 +1,14 @@
 'use strict';
-
 // initialize charts to null
 var chart1 = null;
 var chart2 = null;
 var link;
 var baseUrl = window.location.hostname;
 
-function createLink(rData, oldData) {
-  //create shareable link
-  //ex: 'http://localhost:3000/share/Trump?sent1=negative&s1=3&p1=2&n1=3&neu1=5&t2=Hillary&sent2=positive&s2=5&p2=5&n2=3&neu2=5'
-  if (baseUrl = 'localhost') {baseUrl = 'localhost:3000';}
-  var shareString = baseUrl + '/share/' + rData[0] + '?' + rData[1] + '?' + rData[2] + '?' + rData[3] + '?' + rData[4] + '?' + rData[5] + '?' + rData[6] + '?' + rData[7]
-  + '?' + oldData[0] + '?' + oldData[1] + '?' + oldData[2] + '?' + oldData[3] + '?' + oldData[4] + '?' + oldData[5] + '?' + oldData[6] + '?' + oldData[7];
-  console.log(shareString);
-  return shareString;
-}
-
 // Load the Visualization API and the corechart package.
 google.charts.load('current', {'packages':['corechart']});
 
 function loadChart() {
-  console.log('in load chart');
 
   if (chart1 !== null) {
     chart1.clearChart();
@@ -116,7 +104,8 @@ function loadChartShare(){
   var parameters = shareURL.split('share/');
   parameters = parameters[1].split('?');
   google.charts.setOnLoadCallback(drawChartShare);
-  console.log(parameters);
+  $('.icoTwitter').attr("href", 'https://twitter.com/home?status=Here%20is%20the%20twitter%20sentiment%20for "' + parameters[5] + '" ' + shareURL);
+
   function drawChartShare() {
     // Create the data table.
     var data1 = new google.visualization.DataTable();
