@@ -3,6 +3,18 @@
 // initialize charts to null
 var chart1 = null;
 var chart2 = null;
+var link;
+var baseUrl = 'http://' + window.location.hostname;
+
+function createLink(rData, oldData) {
+  //ex: 'http://localhost:3000/share/Trump?sent1=negative&s1=3&p1=2&n1=3&neu1=5&t2=Hillary&sent2=positive&s2=5&p2=5&n2=3&neu2=5'
+  //create shareable link
+
+  var shareString = baseUrl + '/share/' + rData[5] + '?' + 'sent1=' + rData[6] + '&s1=' + rData[0] + '&p1=' + rData[1] + '&n1=' + rData[2] + '&neu1=' + rData[3] + '&t2=' + oldData[5] + '&sent2=' + oldData[6] + '&s2=' + oldData[0] + '&p2=' + oldData[1] + '&n2=' + oldData[2] + '&neu2=' + oldData[3];
+
+  console.log('share string: ', shareString);
+  return shareString;
+}
 
 // Load the Visualization API and the corechart package.
 google.charts.load('current', {'packages':['corechart']});
@@ -55,7 +67,8 @@ function loadChart() {
     if ((localStorage.getItem('pastresults') !== null) &&
         (JSON.parse(localStorage.getItem('pastresults'))[5] !== resultsData[5])){
       var pastResultsData = JSON.parse(localStorage.getItem('pastresults'));
-
+      console.log(pastResultsData);
+      createLink(resultsData, pastResultsData);
       console.log('drawing table2 with ' + pastResultsData[5]);
       console.log('in code to draw table2, this is chart2 ' + chart2);
 
@@ -93,6 +106,6 @@ function loadChart() {
         chart2.draw(data2, options2);
         localStorage.setItem('pastresults', JSON.stringify(resultsData));
       }
-    }
+    } else {link = createLink(resultsData, [0,0,0,0,0,'','']);}
   }
 }
