@@ -9,7 +9,7 @@ var baseUrl = window.location.hostname;
 function createLink(rData, oldData) {
   //create shareable link
   //ex: 'http://localhost:3000/share/Trump?sent1=negative&s1=3&p1=2&n1=3&neu1=5&t2=Hillary&sent2=positive&s2=5&p2=5&n2=3&neu2=5'
-  if (baseUrl = 'localhost') {baseUrl = 'localhost:3000';}
+  if (baseUrl === 'localhost') {baseUrl = 'localhost:3000';}
   var shareString = baseUrl + '/share/' + rData[0] + '?' + rData[1] + '?' + rData[2] + '?' + rData[3] + '?' + rData[4] + '?' + rData[5] + '?' + rData[6] + '?' + rData[7]
   + '?' + oldData[0] + '?' + oldData[1] + '?' + oldData[2] + '?' + oldData[3] + '?' + oldData[4] + '?' + oldData[5] + '?' + oldData[6] + '?' + oldData[7];
   console.log(shareString);
@@ -44,7 +44,7 @@ function loadChart() {
     ]);
     // Set chart options
     var options1 = {
-      'title': 'Twitter sentiment for ' + resultsData[5] + ' is ' + resultsData[6],
+      'title': 'Twitter sentiment for "' + resultsData[5] + '" is ' + resultsData[6],
       'width':500,
       'height':400,
       'colors':['#aaf66d', '#d84949', '#6dcff6'],
@@ -87,7 +87,7 @@ function loadChart() {
         ]);
         // Set chart options
         var options2 = {
-          'title': 'Twitter sentiment for ' + pastResultsData[5] + ' is ' + pastResultsData[6],
+          'title': 'Twitter sentiment for "' + pastResultsData[5] + '" is ' + pastResultsData[6],
           'width':500,
           'height':400,
           'colors':['#aaf66d', '#d84949', '#6dcff6'],
@@ -129,7 +129,7 @@ function loadChartShare(){
     ]);
     // Set chart options
     var options1 = {
-      'title': 'On ' + parameters[7] + ' Twitter sentiment for ' + parameters[5] + ' was ' + parameters[6],
+      'title': 'On ' + parameters[7] + ' Twitter sentiment for "' + parameters[5] + '" was ' + parameters[6],
       'width':500,
       'height':400,
       'colors':['#aaf66d', '#d84949', '#6dcff6'],
@@ -160,7 +160,7 @@ function loadChartShare(){
       ]);
       // Set chart options
       var options2 = {
-        'title': 'Twitter sentiment for ' + parameters[13] + ' is ' + parameters[14],
+        'title': 'Twitter sentiment for "' + parameters[13] + '" is ' + parameters[14],
         'width':500,
         'height':400,
         'colors':['#aaf66d', '#d84949', '#6dcff6'],
