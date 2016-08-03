@@ -22,7 +22,7 @@ function updatePage() {
     $('#no_results').text('There are no results for ' + resultsData[5]);
     return;
   } else {
-      $('#no_results').fadeOut();
+    $('#no_results').fadeOut();
   }
   loadChart();
 }
@@ -34,12 +34,12 @@ formInput.submit(function(event){
   console.log('event target stuff: ', event.target.term.value);
   console.log('search term:' + searchTerm);
   url = '/search/' + searchTerm;
-  document.getElementById('spin-wheel').style.display = 'block';
+  document.getElementById('spin-wheel').style.visibility = 'visible';
   // window.location.href = url;
   $.get(url)
   .success(function(data){
     console.log(data);
-    document.getElementById('spin-wheel').style.display = 'none';
+    document.getElementById('spin-wheel').style.visibility = 'hidden';
     resultsData = data;
     if (localStorage.getItem('pastresults') === null && resultsData[4] !== 0){
       localStorage.setItem('pastresults', JSON.stringify(data));

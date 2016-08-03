@@ -116,12 +116,14 @@ a.socialIcon:hover, .socialHoverClass {
 }
 
 #spin-wheel {
-  display: none;
+  display: block;
+  visibility: hidden;
   width:100%;
   text-align: center;
 }
 
 #spin-wheel img {
-	padding-top: 2rem;
+  max-width: 8rem;
+  padding-top: 2rem;
   margin: 0 auto;
 }
