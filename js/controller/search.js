@@ -27,6 +27,7 @@ formInput.submit(function(event){
   event.preventDefault();
   $('#result-section').fadeIn();
   var searchTerm = event.target.term.value;
+  document.getElementById("search-form").reset();
   console.log(event);
   console.log('event target stuff: ', event.target.term.value);
   console.log('search term:' + searchTerm);
