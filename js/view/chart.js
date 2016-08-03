@@ -56,7 +56,7 @@ function loadChart() {
         italic: false
       },
       'chartArea': {
-        'width': '100%', 
+        'width': '100%',
         'height': '65%'},
     };
 
@@ -69,7 +69,7 @@ function loadChart() {
         (JSON.parse(localStorage.getItem('pastresults'))[5] !== resultsData[5])){
       var pastResultsData = JSON.parse(localStorage.getItem('pastresults'));
       console.log(pastResultsData);
-      createLink(resultsData, pastResultsData);
+      link = createLink(resultsData, pastResultsData);
       console.log('drawing table2 with ' + pastResultsData[5]);
       console.log('in code to draw table2, this is chart2 ' + chart2);
 
@@ -102,7 +102,7 @@ function loadChart() {
           italic: false
         },
         'chartArea': {
-          'width': '100%', 
+          'width': '100%',
           'height': '65%'},
         };
 
