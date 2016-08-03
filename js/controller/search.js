@@ -1,3 +1,4 @@
+'use strict';
 // get form input, attach to the event listener
 // event listener will call the function for ajax get
 // form the url string which gets passed to the ajax get call
@@ -7,7 +8,6 @@ var url;
 var resultsData;
 
 function updatePage() {
-
   //make chart, fadeIn results, etc.
   $('#search-term').text(resultsData[5]);
   $('#sentiment').text(resultsData[6]);
@@ -28,7 +28,6 @@ formInput.submit(function(event){
   $('#result-section').fadeIn();
   var searchTerm = event.target.term.value;
   document.getElementById('searchfield').value = '';
-  console.log('search term:' + searchTerm);
   url = '/search/' + searchTerm;
   $('#spin-wheel').css('visibility','visible');
   $.get(url)
@@ -36,7 +35,6 @@ formInput.submit(function(event){
     $('#spin-wheel').css('visibility','hidden');
     $('#social-section').fadeIn();
     resultsData = data;
-    console.log('results data: ', resultsData);
     if (localStorage.getItem('pastresults') === null && resultsData[4] !== 0){
       localStorage.setItem('pastresults', JSON.stringify(data));
     }
