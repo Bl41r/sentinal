@@ -16,11 +16,8 @@ h1, #tagline, #result-text {
 	max-width: 85%;
 }
 
-#result-text {
-	padding-top: 4rem;
-}
-
-#chart_div {
+#result-section {
+	margin-top: -4rem;
 }
 
 .social-network {
@@ -34,11 +31,6 @@ h1, #tagline, #result-text {
 
 #content {
 	padding-bottom: 110px;
-}
-
-#chart-table {
-	table-layout: fixed;
-	margin-left: -7rem;
 }
 
 @media only screen and (min-width : 768px) {
