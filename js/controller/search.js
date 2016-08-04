@@ -1,7 +1,7 @@
 'use strict';
 // get form input, attach to the event listener
 // event listener will call the function for ajax get
-// form the url string which gets passed to the ajax get call
+// from the url string which gets passed to the ajax get call
 var submitBtn = $('.btn-default');
 var formInput = $('.search-form');
 var url;
@@ -29,10 +29,10 @@ function updatePage() {
 formInput.submit(function(event){
   event.preventDefault();
   var searchTerm = event.target.term.value;
+  searchTerm = encodeURIComponent(searchTerm);
   document.getElementById('searchfield').value = '';
   $('input#searchfield')[0].blur();
-  // $('#search').css('opacity', '0');
-  $('#result-section').css('opacity', '0');  //testline
+  $('#search').css('opacity', '0');
   url = '/search/' + searchTerm;
   $('#spin-wheel').css('visibility','visible');
   $.get(url)
@@ -47,7 +47,5 @@ formInput.submit(function(event){
   .done(function() {
     updatePage();
     $('#search').css('opacity', '1');
-    $('#result-section').css('opacity', '1');  //testline
-    // setTimeout(function() {$('#result-setion').css('opacity', '1');}, 500);  //testline
   });
 });
