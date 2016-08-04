@@ -57,9 +57,9 @@ function loadChart() {
       var pastResultsData = JSON.parse(localStorage.getItem('pastresults'));
       link = createLink(resultsData, pastResultsData);
 
-      if (chart2 !== null) {
-        chart2.clearChart();
-      }
+      // if (chart2 !== null) {
+      //   chart2.clearChart();
+      // }
       google.charts.setOnLoadCallback(drawChart2);
 
       function drawChart2() {
@@ -94,8 +94,22 @@ function loadChart() {
         chart2.draw(data2, options2);
         localStorage.setItem('pastresults', JSON.stringify(resultsData));
       }
-    } else {link = createLink(resultsData, [0,0,0,0,0,'','']);}
+    } else {
+      // remove any charts that remain from shared links
+      if (chart2 !== null) {
+        chart2.clearChart();
+      }
+      link = createLink(resultsData, [0,0,0,0,0,'','']);}
   }
+}
+
+// helper function to parse date from the server shared link
+// so it can be used in the title of the shared charts
+function parseDate(dateString) {
+  var d1 = dateString.split('T');
+  var d2 = d1[1].split(':');
+  var time = d2[0] + ':' + d2[1] + ' GMT,';
+  return (d1[0] + ', ' + time + '\n');
 }
 
 function loadChartShare(){
@@ -117,14 +131,14 @@ function loadChartShare(){
     ]);
     // Set chart options
     var options1 = {
-      'title': 'On ' + parameters[7] + ' Twitter sentiment for "' + parameters[5] + '" was ' + parameters[6],
+      'title': 'On ' + parseDate(parameters[7]) + ' Twitter sentiment for "' + parameters[5].replace('%20', ' ') + '" was ' + parameters[6],
       'width':500,
       'height':400,
       'colors':['#aaf66d', '#d84949', '#6dcff6'],
       'titleTextStyle':{
         color: '#333',
         fontName: 'Open Sans, Avenir Next, Helvetica Neue',
-        fontSize: 24,
+        fontSize: 18,
         bold: false,
         italic: false
       },
@@ -148,14 +162,14 @@ function loadChartShare(){
       ]);
       // Set chart options
       var options2 = {
-        'title': 'On' + parameters[15] + ' Twitter sentiment for "' + parameters[13] + '" is ' + parameters[14],
+        'title': 'On ' + parseDate(parameters[15]) + ' Twitter sentiment for "' + parameters[13].replace('%20', ' ') + '" is ' + parameters[14],
         'width':500,
         'height':400,
         'colors':['#aaf66d', '#d84949', '#6dcff6'],
         'titleTextStyle':{
           color: '#333',
           fontName: 'Open Sans, Avenir Next, Helvetica Neue',
-          fontSize: 24,
+          fontSize: 18,
           bold: false,
           italic: false
         },
