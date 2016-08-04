@@ -148,7 +148,7 @@ function loadChartShare(){
       ]);
       // Set chart options
       var options2 = {
-        'title': 'Twitter sentiment for "' + parameters[13] + '" is ' + parameters[14],
+        'title': 'On ' + parameters[15] +' Twitter sentiment for "' + parameters[13] + '" was ' + parameters[14],
         'width':500,
         'height':400,
         'colors':['#aaf66d', '#d84949', '#6dcff6'],
