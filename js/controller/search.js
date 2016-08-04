@@ -1,4 +1,4 @@
-'use strict';
+// 'use strict';
 // get form input, attach to the event listener
 // event listener will call the function for ajax get
 // form the url string which gets passed to the ajax get call
@@ -20,9 +20,9 @@ function updatePage() {
     $('#no_results').fadeOut();
   }
   loadChart();
-  // $('#result-section').fadeIn();
-  // document.getElementById('result-section').fadeIn();
-  document.getElementById('result-section').style.display = 'block';
+  $('#result-section').fadeIn(2000);
+  // document.getElementById('result-section').fadeIn(1000);
+  // document.getElementById('result-section').style.display = 'block';
 }
 
 formInput.submit(function(event){
