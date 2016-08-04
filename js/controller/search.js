@@ -20,7 +20,9 @@ function updatePage() {
     $('#no_results').fadeOut();
   }
   loadChart();
-  $('#result-section').fadeIn();
+  // $('#result-section').fadeIn();
+  // document.getElementById('result-section').fadeIn();
+  document.getElementById('result-section').style.display = 'block';
 }
 
 formInput.submit(function(event){
