@@ -50,7 +50,6 @@ function loadChart() {
     // Instantiate and draw our chart, passing in some options.
     chart1 = new google.visualization.PieChart(document.getElementById('keyword1'));
     chart1.draw(data1, options1);
-
     // Check if localStorage contains any past results
     if ((localStorage.getItem('pastresults') !== null) &&
         (JSON.parse(localStorage.getItem('pastresults'))[5] !== resultsData[5])){
