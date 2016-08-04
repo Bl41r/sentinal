@@ -32,8 +32,8 @@ function loadChart() {
     // Set chart options
     var options1 = {
       'title': 'Twitter sentiment for "' + resultsData[5] + '" is ' + resultsData[6],
-      'width':500,
-      'height':400,
+      'width':375,
+      'height':375,
       'colors':['#aaf66d', '#d84949', '#6dcff6'],
       'titleTextStyle':{
         color: '#333',
@@ -75,8 +75,8 @@ function loadChart() {
         // Set chart options
         var options2 = {
           'title': 'Twitter sentiment for "' + pastResultsData[5] + '" is ' + pastResultsData[6],
-          'width':500,
-          'height':400,
+          'width':375,
+          'height':375,
           'colors':['#aaf66d', '#d84949', '#6dcff6'],
           'titleTextStyle':{
             color: '#333',
@@ -132,8 +132,8 @@ function loadChartShare(){
     // Set chart options
     var options1 = {
       'title': 'On ' + parseDate(parameters[7]) + ' Twitter sentiment for "' + parameters[5].replace('%20', ' ') + '" was ' + parameters[6],
-      'width':500,
-      'height':400,
+      'width':375,
+      'height':375,
       'colors':['#aaf66d', '#d84949', '#6dcff6'],
       'titleTextStyle':{
         color: '#333',
@@ -163,8 +163,8 @@ function loadChartShare(){
       // Set chart options
       var options2 = {
         'title': 'On ' + parseDate(parameters[15]) + ' Twitter sentiment for "' + parameters[13].replace('%20', ' ') + '" is ' + parameters[14],
-        'width':500,
-        'height':400,
+        'width':375,
+        'height':375,
         'colors':['#aaf66d', '#d84949', '#6dcff6'],
         'titleTextStyle':{
           color: '#333',
