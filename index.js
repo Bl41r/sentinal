@@ -53,15 +53,15 @@ function cleanup(tweet) { //called by analyzeTweet, expects a string
 }
 
 function analyzeTweet(tweet) {  //assigns +1, 0,or -1 to a tweet
+  console.log(tweet);
   var score = 0;
   tweet = cleanup(tweet);
-  tweet.forEach(function(w) {
-    if (w in dictionary) {
-      // console.log(w, dictionary[w]);
-      score += dictionary[w];
+  for (var i = 0; i < tweet.length; i++) {
+    if (tweet[i] in dictionary && tweet[i - 1] !== 'not') {
+      score += dictionary[tweet[i]];
     }
-  });
-  // console.log('raw score: ', score);
+  }
+  console.log('raw score: ', score);
   if (!score) {
     // console.log('score assigned --> 0');
     return score;
