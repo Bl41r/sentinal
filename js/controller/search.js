@@ -21,6 +21,8 @@ function updatePage() {
     $('#social-section').fadeIn();
   }
   loadChart();
+  console.log('here');
+  $('#result-section')[0].style.display = 'block';
   $('#result-section').fadeIn(2000);
 }
 
