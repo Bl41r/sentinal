@@ -117,7 +117,7 @@ app.get('/search/*', function(request, response) {
   bodies = [];  //tweet bodies
   ids = [];
   var keyword = arguments[0].params['0'];
-
+  console.log(keyword);
   var twitterData = twitterInstance.getSearch({ count: '100', q:keyword, lang: 'en', result_type: 'recent'}, error, function(data){
     data = JSON.parse(data);
     data = data.statuses;
