@@ -44,7 +44,8 @@ function loadChart() {
       },
       'chartArea': {
         'width': '100%',
-        'height': '65%'},
+        'height': '65%'
+      },
     };
 
     // Instantiate and draw our chart, passing in some options.
@@ -53,13 +54,9 @@ function loadChart() {
 
     // Check if localStorage contains any past results
     if ((localStorage.getItem('pastresults') !== null) &&
-        (JSON.parse(localStorage.getItem('pastresults'))[5] !== resultsData[5])){
+    (JSON.parse(localStorage.getItem('pastresults'))[5] !== resultsData[5])){
       var pastResultsData = JSON.parse(localStorage.getItem('pastresults'));
       link = createLink(resultsData, pastResultsData);
-
-      // if (chart2 !== null) {
-      //   chart2.clearChart();
-      // }
       google.charts.setOnLoadCallback(drawChart2);
 
       function drawChart2() {
@@ -87,7 +84,8 @@ function loadChart() {
           },
           'chartArea': {
             'width': '100%',
-            'height': '65%'},
+            'height': '65%'
+          },
         };
 
         chart2 = new google.visualization.PieChart(document.getElementById('keyword2'));
@@ -99,7 +97,8 @@ function loadChart() {
       if (chart2 !== null) {
         chart2.clearChart();
       }
-      link = createLink(resultsData, [0,0,0,0,0,'','']);}
+      link = createLink(resultsData, [0,0,0,0,0,'','']);
+    }
   }
 }
 
