@@ -103,7 +103,7 @@ function loadChartShare(){
   var parameters = shareURL.split('share/');
   parameters = parameters[1].split('?');
   google.charts.setOnLoadCallback(drawChartShare);
-  $('.icoTwitter').attr("href", 'https://twitter.com/home?status=Here%20is%20the%20twitter%20sentiment%20for "' + parameters[5] + '" ' + shareURL);
+  $('.icoTwitter').attr('href', 'https://twitter.com/home?status=Here%20is%20the%20twitter%20sentiment%20for "' + parameters[5] + '" ' + shareURL);
 
   function drawChartShare() {
     // Create the data table.
@@ -148,7 +148,7 @@ function loadChartShare(){
       ]);
       // Set chart options
       var options2 = {
-        'title': 'Twitter sentiment for "' + parameters[13] + '" is ' + parameters[14],
+        'title': 'On' + parameters[15] + ' Twitter sentiment for "' + parameters[13] + '" is ' + parameters[14],
         'width':500,
         'height':400,
         'colors':['#aaf66d', '#d84949', '#6dcff6'],
