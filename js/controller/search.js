@@ -44,6 +44,11 @@ formInput.submit(function(event){
       localStorage.setItem('pastresults', JSON.stringify(data));
     }
   })
+  .fail(function() {
+    alert('Attempt failed!');
+    $('#spin-wheel').css('visibility','hidden');
+    $('#search').css('opacity', '1');
+  })
   .done(function() {
     updatePage();
     $('#search').css('opacity', '1');
