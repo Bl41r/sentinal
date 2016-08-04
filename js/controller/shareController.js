@@ -1,5 +1,7 @@
 'use strict';
 function shareController() {
+  $('#home-section').fadeIn();
+  $('#result-section').fadeIn();
   $('#faq-section').hide();
   $('#about-section').hide();
   $('.nav-item').css('border-bottom', 'none');
