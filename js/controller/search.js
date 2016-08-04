@@ -11,7 +11,6 @@ function updatePage() {
   //make chart, fadeIn results, etc.
   $('#search-term').text(resultsData[5]);
   $('#sentiment').text(resultsData[6]);
-  $('#result-section').fadeIn();
 
   if (resultsData[4] === 0) {
     $('#no_results').fadeIn();
@@ -21,13 +20,15 @@ function updatePage() {
     $('#no_results').fadeOut();
   }
   loadChart();
+  $('#result-section').fadeIn();
 }
 
 formInput.submit(function(event){
   event.preventDefault();
-  $('#result-section').fadeIn();
   var searchTerm = event.target.term.value;
   document.getElementById('searchfield').value = '';
+  $('input#searchfield')[0].blur();
+  $('#search').css('opacity', '0');
   url = '/search/' + searchTerm;
   $('#spin-wheel').css('visibility','visible');
   $.get(url)
@@ -39,5 +40,8 @@ formInput.submit(function(event){
       localStorage.setItem('pastresults', JSON.stringify(data));
     }
   })
-  .done(updatePage);
+  .done(function() {
+    updatePage();
+    $('#search').css('opacity', '1');
+  });
 });

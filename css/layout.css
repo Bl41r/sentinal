@@ -10,10 +10,9 @@ h1, #tagline, #result-text {
 #search {
   margin: auto;
   padding-top: 3rem;
-}
-
-#search {
 	max-width: 85%;
+	opacity: 1;
+	transition: all 350ms;
 }
 
 #result-section {
