@@ -3,6 +3,14 @@
 	margin-top: -0.7rem;
 }
 
+#keyword1 div div {
+	margin: 0 auto;
+}
+
+#keyword2 div div {
+	margin: 0 auto;
+}
+
 h1, #tagline, #result-text {
 	text-align: center;
 }
