@@ -21,9 +21,9 @@ Sentinal is built using JQuery, Javascript, Bootstrap, HTML, CSS, AJAX, JSON and
 
 ## Developer Notes
 To use this code or to extend it, you should first register for developer API keys on twitter.com. You should then define and export the following twitter keys in your .bashrc or .bash_profile file, and source that file.  
-TWITTER_CONSUMER_KEY=""
-TWITTER_CONSUMER_SECRET=""
-TWITTER_APP_ACCESS_TOKEN=""
-TWITTER_APP_ACCESS_TOKEN_SECRET=""
+* TWITTER_CONSUMER_KEY=""
+* TWITTER_CONSUMER_SECRET=""
+* TWITTER_APP_ACCESS_TOKEN=""
+* TWITTER_APP_ACCESS_TOKEN_SECRET=""
 
 This web application uses Twitter's [Oauth authentication] (https://dev.twitter.com/oauth/3-legged) to authenticate the user to Twitter. You may use [Application-Only Authentication](https://dev.twitter.com/oauth/application-only) depending on your requirement. Node is the local server environment used, and you need to set up your node server before any testing on your local machine. Refer to the documentation on Node.js to see how to do that.
