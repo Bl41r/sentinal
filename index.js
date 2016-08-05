@@ -9,7 +9,7 @@ var express = require('express'),
 module.exports = require('./lib/Twitter');
 
 var repetitions = 1;
-var max_reps = 5; //each rep is 100 tweets
+var max_reps = 2; //each rep is 100 tweets
 var ids = [];
 var bodies = [];
 var positives = 0;
@@ -129,7 +129,7 @@ app.get('/search/*', function(request, response) {
     });
     ids = ids.sort();
     var lastID = ids[0] - 100;
-    setTimeout(function() {nextSearch(lastID, keyword, response);}, 250);
+    setTimeout(function() {nextSearch(lastID, keyword, response);}, 350);
   });
 });
 
