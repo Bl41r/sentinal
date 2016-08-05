@@ -1,4 +1,3 @@
-// 'use strict';
 // initialize charts to null
 var chart1 = null;
 var chart2 = null;
