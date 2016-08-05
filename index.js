@@ -10,6 +10,7 @@ module.exports = require('./lib/Twitter');
 
 var repetitions = 1;
 var max_reps = 2; //each rep is 100 tweets
+var timeout = 350;
 var ids = [];
 var bodies = [];
 var positives = 0;
@@ -95,7 +96,7 @@ function nextSearch(id, keyword, response) {
     var lastID = ids[0] - 100;
     repetitions += 1;
     if (repetitions < max_reps) {
-      setTimeout(function(){nextSearch(lastID, keyword, response);},250);
+      setTimeout(function(){nextSearch(lastID, keyword, response);},timeout);
     } else {  //when finished searching...
       var final = processTweets(bodies);
       final.push(keyword);
@@ -129,7 +130,7 @@ app.get('/search/*', function(request, response) {
     });
     ids = ids.sort();
     var lastID = ids[0] - 100;
-    setTimeout(function() {nextSearch(lastID, keyword, response);}, 350);
+    setTimeout(function() {nextSearch(lastID, keyword, response);}, timeout);
   });
 });
 
