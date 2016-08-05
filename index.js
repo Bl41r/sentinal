@@ -24,7 +24,6 @@ var error = function (err, response, body) {
   console.log(body);
 };
 var success = function (data) {
-  // console.log(data);
   return data;
 };
 
@@ -42,19 +41,16 @@ var twitterInstance = new Twitter(config);
 var dictionary = JSON.parse(fs.readFileSync('js/model/sentiment_dictionary.json'));
 
 function cleanup(tweet) { //called by analyzeTweet, expects a string
-  // console.log('raw tweet: ', tweet);
   tweet = tweet
   .replace(/[.,\/$!%\^\*;:&{}=\-_()`~><+|]/g, '')
   .replace(/'/g, ' ') //replace ' with a space
   .split(' ').filter(function(t) { //return array of words of length >2
     return t.length > 2;
   });
-  // console.log('cleaned tweet: ', tweet);
   return tweet;
 }
 
 function analyzeTweet(tweet) {  //assigns +1, 0,or -1 to a tweet
-  console.log(tweet);
   var score = 0;
   tweet = cleanup(tweet);
   for (var i = 0; i < tweet.length; i++) {
@@ -62,12 +58,9 @@ function analyzeTweet(tweet) {  //assigns +1, 0,or -1 to a tweet
       score += dictionary[tweet[i]];
     }
   }
-  console.log('raw score: ', score);
   if (!score) {
-    // console.log('score assigned --> 0');
     return score;
   } else {
-    // console.log('score assigned --> ' + (score / Math.abs(score)));
     if (score > 0) {positives += 1;} else {negatives += 1;}
     return (score / Math.abs(score));
   }
@@ -90,7 +83,6 @@ function nextSearch(id, keyword, response) {
     data.forEach(function(d) {
       bodies.push(d.text);
       ids.push(d.id);
-      // console.log(d.text, d.id);
     });
     ids = ids.sort();
     var lastID = ids[0] - 100;
@@ -106,7 +98,6 @@ function nextSearch(id, keyword, response) {
       if (final[0] === 0) {sentiment = 'neutral';}
       final.push(sentiment);
       final.push(new Date());
-      console.log('this is the data: ' + final);
       response.json(final);
     }
   });
@@ -118,15 +109,12 @@ app.get('/search/*', function(request, response) {
   bodies = [];  //tweet bodies
   ids = [];
   var keyword = arguments[0].params['0'];
-  console.log(keyword);
   var twitterData = twitterInstance.getSearch({ count: '100', q:keyword, lang: 'en', result_type: 'recent'}, error, function(data){
     data = JSON.parse(data);
     data = data.statuses;
-    // console.log(data);
     data.forEach(function(d) {
       bodies.push(d.text);
       ids.push(d.id);
-      // console.log(d.text, d.id);
     });
     ids = ids.sort();
     var lastID = ids[0] - 100;

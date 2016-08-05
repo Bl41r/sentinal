@@ -59,7 +59,6 @@
         $('#clipboard-modal').on('click', function(){
           document.getElementById('modal-link').value = link;
         });
-        console.log(link);
         google.charts.setOnLoadCallback(drawChart2);
 
         function drawChart2() {
